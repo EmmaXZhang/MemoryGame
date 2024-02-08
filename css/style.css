@@ -6,6 +6,15 @@ body {
   margin: 0;
 }
 
+header {
+  font-family: "Protest Riot";
+  font-size: 60px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  margin: 100px;
+}
+
 .container {
   height: 100vh;
   width: 100vw;
@@ -29,36 +38,39 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
-header {
-  font-family: "Protest Riot";
-  font-size: 60px;
-  color: black;
-  display: flex;
-  justify-content: center;
-  margin: 100px;
+/* click effect on card */
+.card:active {
+  transform: scale(0.97);
 }
 
-/* hide front face-temporary */
+/* flip card effect */
+.card.flipCard {
+  transform: rotateY(180deg);
+}
+
 .front-face {
   height: 100%;
   width: 100%;
-  display: none;
-}
-
-/* show front face */
-.front-face-show {
-  display: flex;
+  position: absolute;
+  background: white;
 }
 
 .back-face {
-  height: 80%;
-  width: 80%;
-  display: flex;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: white;
 }
 
 /* hide back face */
-.back-face-hide {
+/* .back-face-hide {
   display: none;
-}
+} */
+
+/* show front face */
+/* .front-face-show {
+  display: flex;
+} */
