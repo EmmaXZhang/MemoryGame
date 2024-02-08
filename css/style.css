@@ -26,6 +26,9 @@ header {
 
   grid-template-columns: auto auto auto auto;
   grid-template-rows: auto auto auto auto;
+
+  /* create 3d flip effect for child elements */
+  perspective: 1000px;
 }
 
 .card {
@@ -33,44 +36,42 @@ header {
   height: 200px;
   background-color: white;
   border: 2px solid aqua;
-  /* to show X and O mark */
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  /* 3d flip effect */
+  transform-style: preserve-3d;
+  /* flip speed */
+  transition: transform 0.7s;
 }
 
-/* click effect on card */
+/* click effect on card, scale down 0.97 of original size */
 .card:active {
   transform: scale(0.97);
 }
 
-/* flip card effect */
+/* flip card effect,rotate y axis after click */
 .card.flipCard {
   transform: rotateY(180deg);
 }
 
-.front-face {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  background: white;
-}
-
+.front-face,
 .back-face {
   height: 100%;
   width: 100%;
   position: absolute;
-  background: white;
+  /* define wether or not back-face is visible, apply to element with 3d transform style */
+  backface-visibility: hidden;
 }
 
-/* hide back face */
-/* .back-face-hide {
-  display: none;
-} */
+.front-face {
+  background: yellow;
+  /* show front face  */
+  transform: rotateY(180deg);
+}
 
-/* show front face */
-/* .front-face-show {
-  display: flex;
-} */
+.back-face {
+  background: white;
+}
