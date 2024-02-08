@@ -26,6 +26,9 @@ body {
   border: 2px solid aqua;
   /* to show X and O mark */
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 header {
@@ -35,4 +38,27 @@ header {
   display: flex;
   justify-content: center;
   margin: 100px;
+}
+
+/* hide front face-temporary */
+.front-face {
+  height: 100%;
+  width: 100%;
+  display: none;
+}
+
+/* show front face */
+.front-face-show {
+  display: flex;
+}
+
+.back-face {
+  height: 80%;
+  width: 80%;
+  display: flex;
+}
+
+/* hide back face */
+.back-face-hide {
+  display: none;
 }
