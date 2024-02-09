@@ -14,6 +14,7 @@ const state = {
   secondImgIndex: null,
   imgClickIndex: null,
   isFirstClick: true,
+  flippedNum: 0,
 };
 
 init();
@@ -22,6 +23,8 @@ init();
 cards.forEach(function (card) {
   card.addEventListener("click", flipCard);
 });
+
+restartBtn.addEventListener("click", restart);
 
 //-------------------------functions----------------------------------
 //shuffled cards
@@ -62,10 +65,13 @@ function checkMatch() {
     //if same, keep img open
     cards[state.firstImgIndex].removeEventListener("click", flipCard);
     cards[state.secondImgIndex].removeEventListener("click", flipCard);
+
+    state.flippedNum += 2;
+
     //check Win
-    if (checkWin()) {
-      elements.winMsg.innerText = "Congratulation! You Win";
-      elements.message.classList.add("msgShow");
+    if (state.flippedNum === 16) {
+      winMsg.innerText = "Yeah! You Win";
+      message.classList.add("msgShow");
     }
     reset();
   } else {
@@ -79,13 +85,6 @@ function checkMatch() {
     }, 1000);
     reset();
   }
-}
-
-function checkWin() {
-  //check is all cell removed event listener
-  return Array.from(cards).every(
-    (card) => !card.hasEventListen("click", flipCard)
-  );
 }
 
 function reset() {
@@ -103,5 +102,21 @@ function init() {
     let randomImgSrc =
       "./css/images/animal" + state.shuffledCards[index] + ".png";
     card.querySelector(".front-face").setAttribute("src", randomImgSrc);
+  });
+}
+
+function restart() {
+  message.classList.remove("msgShow");
+  reset();
+  // Flip all cards back
+  cards.forEach((card) => {
+    card.classList.remove("flipCard");
+  });
+
+  // Re-initialize the game
+  init();
+  //enable flipCard
+  cards.forEach(function (card) {
+    card.addEventListener("click", flipCard);
   });
 }
