@@ -75,3 +75,25 @@ header {
 .back-face {
   background: white;
 }
+
+/* winning message showing case, hidden firs */
+.message {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(171, 196, 170, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  color: aliceblue;
+  font-size: 90px;
+  flex-direction: column;
+  font-family: "Protest Riot", sans-serif;
+}
+
+/* change display to "show" to show message */
+.message.msgShow {
+  display: flex;
+}

@@ -1,6 +1,9 @@
 // element from DOM
 const cards = document.querySelectorAll(".card");
 const frontFaces = document.querySelectorAll(".frontFace");
+const winMsg = document.querySelector(".messageText");
+const message = document.querySelector(".message");
+const restartBtn = document.querySelector(".restart");
 
 //----------------state variable--------------------------------
 const state = {
@@ -23,8 +26,10 @@ cards.forEach(function (card) {
 //-------------------------functions----------------------------------
 //shuffled cards
 function shuffledNumArr() {
-  const cardNum = Array.from({ length: 8 }, (_, index) => index + 1); //generate random num from 1-8
-  const pairs = cardNum.flatMap((number) => [number, number]); //Duplicate each number to form 8 pairs nums array
+  //generate random num from 1-8
+  const cardNum = Array.from({ length: 8 }, (_, index) => index + 1);
+  //Duplicate each number to form 8 pairs nums array
+  const pairs = cardNum.flatMap((number) => [number, number]);
   //Shuffle the pairs number array
   for (let i = pairs.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -57,6 +62,11 @@ function checkMatch() {
     //if same, keep img open
     cards[state.firstImgIndex].removeEventListener("click", flipCard);
     cards[state.secondImgIndex].removeEventListener("click", flipCard);
+    //check Win
+    if (checkWin()) {
+      elements.winMsg.innerText = "Congratulation! You Win";
+      elements.message.classList.add("msgShow");
+    }
     reset();
   } else {
     // Create local variables to store image indices
@@ -66,9 +76,16 @@ function checkMatch() {
     setTimeout(() => {
       cards[firstIndex].classList.toggle("flipCard");
       cards[secondIndex].classList.toggle("flipCard");
-    }, 2000);
+    }, 1000);
     reset();
   }
+}
+
+function checkWin() {
+  //check is all cell removed event listener
+  return Array.from(cards).every(
+    (card) => !card.hasEventListen("click", flipCard)
+  );
 }
 
 function reset() {
