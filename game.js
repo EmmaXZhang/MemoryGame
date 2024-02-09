@@ -55,7 +55,7 @@ function flipCard() {
     state.secondImgIndex = state.imgClickIndex;
     state.secondClickNum = state.shuffledCards[state.secondImgIndex];
     state.isFirstClick = true;
-
+    //check pair match
     checkMatch();
   }
 }
@@ -67,7 +67,6 @@ function checkMatch() {
     cards[state.secondImgIndex].removeEventListener("click", flipCard);
 
     state.flippedNum += 2;
-
     //check Win
     if (state.flippedNum === 16) {
       winMsg.innerText = "Yeah! You Win";
@@ -112,7 +111,6 @@ function restart() {
   cards.forEach((card) => {
     card.classList.remove("flipCard");
   });
-
   // Re-initialize the game
   init();
   //enable flipCard
