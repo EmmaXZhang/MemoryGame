@@ -39,14 +39,6 @@ function flipCard() {
   //check is second click img == first click img. (Num same), also store 1st and 2nd img index
   state.imgClickIndex = Array.from(cards).indexOf(this); //get image index from "cards" notelist
 
-  // if (state.firstClickNum === null) {
-  //   state.firstImgIndex = state.imgClickIndex;
-  //   state.firstClickNum = state.shuffledCards[state.firstImgIndex];
-  // } else {
-  //   state.secondImgIndex = state.imgClickIndex;
-  //   state.secondClickNum = state.shuffledCards[state.secondImgIndex];
-  // }
-
   if (state.isFirstClick) {
     state.firstImgIndex = state.imgClickIndex;
     state.firstClickNum = state.shuffledCards[state.firstImgIndex];
@@ -56,31 +48,35 @@ function flipCard() {
     state.secondClickNum = state.shuffledCards[state.secondImgIndex];
     state.isFirstClick = true;
 
-    //if same, keep img open ???
-    if (state.firstClickNum === state.secondClickNum) {
-      cards[state.firstImgIndex].removeEventListener("click", flipCard);
-      cards[state.secondImgIndex].removeEventListener("click", flipCard);
-      state.firstClickNum = null;
-      state.secondClickNum = null;
-      state.firstImgIndex = null;
-      state.secondImgIndex = null;
-    } else {
-      // Create local variables to store image indices
-      const firstIndex = state.firstImgIndex;
-      const secondIndex = state.secondImgIndex;
-      //if note, fip back after few second: 2 imgs
-      setTimeout(() => {
-        cards[firstIndex].classList.toggle("flipCard");
-        cards[secondIndex].classList.toggle("flipCard");
-      }, 2000);
-
-      //reset state for click num for next pair
-      state.firstClickNum = null;
-      state.secondClickNum = null;
-      state.firstImgIndex = null;
-      state.secondImgIndex = null;
-    }
+    checkMatch();
   }
+}
+
+function checkMatch() {
+  if (state.firstClickNum === state.secondClickNum) {
+    //if same, keep img open
+    cards[state.firstImgIndex].removeEventListener("click", flipCard);
+    cards[state.secondImgIndex].removeEventListener("click", flipCard);
+    reset();
+  } else {
+    // Create local variables to store image indices
+    const firstIndex = state.firstImgIndex;
+    const secondIndex = state.secondImgIndex;
+    //if note, fip back after few second: 2 imgs
+    setTimeout(() => {
+      cards[firstIndex].classList.toggle("flipCard");
+      cards[secondIndex].classList.toggle("flipCard");
+    }, 2000);
+    reset();
+  }
+}
+
+function reset() {
+  //reset state for click num for next pair
+  state.firstClickNum = null;
+  state.secondClickNum = null;
+  state.firstImgIndex = null;
+  state.secondImgIndex = null;
 }
 
 function init() {
