@@ -4,11 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Memory Game</title>
+
     <link rel="stylesheet" href="./css/style.css" />
+    <!-- font family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sixtyfour&family=Workbench&display=swap"
+      rel="stylesheet"
+    />
+
     <script src="./game.js" defer></script>
   </head>
   <body>
     <header>Memory Game</header>
+
+    <div
+      class="countdown-container"
+      data-duration="60"
+      data-transition="ease"
+      data-color="#c39fe0"
+      data-size="500"
+      data-position="right"
+    ></div>
+
     <div class="container">
       <section class="card">
         <img src="./css/images/animal1.png" alt="dog" class="front-face" />
@@ -155,9 +174,6 @@
         />
       </section>
     </div>
-
-    <div class="timer">Timer:</div>
-    <div class="counter">Count:</div>
 
     <!--add msgShow class to show result-->
     <div class="message">

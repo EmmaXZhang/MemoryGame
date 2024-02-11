@@ -7,12 +7,14 @@ body {
 }
 
 header {
-  font-family: "Protest Riot";
+  font-family: "Workbench", sans-serif;
   font-size: 60px;
-  color: black;
+  color: rgb(99, 122, 159);
   display: flex;
   justify-content: center;
-  margin: 100px;
+  padding-top: 80px;
+
+  background-color: rgb(255, 243, 207);
 }
 
 .container {
@@ -22,7 +24,7 @@ header {
   /* center container element */
   align-content: center;
   justify-content: center;
-  background-color: aqua;
+  background-color: rgb(255, 243, 207);
 
   grid-template-columns: auto auto auto auto;
   grid-template-rows: auto auto auto auto;
@@ -32,10 +34,10 @@ header {
 }
 
 .card {
-  width: 200px;
-  height: 200px;
-  background-color: white;
-  border: 2px solid aqua;
+  width: 150px;
+  height: 150px;
+  background: rgb(232, 200, 114);
+  border: 2px solid rgb(255, 243, 207);
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -67,13 +69,13 @@ header {
 }
 
 .front-face {
-  background: yellow;
+  background: rgb(99, 122, 159);
   /* show front face  */
   transform: rotateY(180deg);
 }
 
 .back-face {
-  background: white;
+  background: rgb(232, 200, 114);
 }
 
 /* winning message showing case, hidden firs */
@@ -96,4 +98,14 @@ header {
 /* change display to "show" to show message */
 .message.msgShow {
   display: flex;
+}
+
+.timer {
+  background-color: rgb(255, 243, 207);
+  display: flex;
+  justify-content: center;
+  color: rgb(99, 122, 159);
+  padding-top: 30px;
+  font-family: "Gill Sans", sans-serif;
+  font-size: 20px;
 }
