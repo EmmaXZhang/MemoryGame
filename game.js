@@ -30,6 +30,9 @@ cards.forEach(function (card) {
 restartBtn.addEventListener("click", restart);
 
 //-------------------------functions----------------------------------
+//timer count down
+state.timer = setInterval(countdownTimer, 1000);
+
 //shuffled cards
 function shuffledNumArr() {
   //generate random num from 1-8
@@ -114,7 +117,6 @@ function countdownTimer() {
 }
 
 function init() {
-  state.timer = setInterval(countdownTimer, 1000);
   state.shuffledCards = shuffledNumArr();
   // linked shuffled card number array to images
   cards.forEach((card, index) => {
@@ -130,6 +132,10 @@ function restart() {
   //reset countdown timer to 120
   state.countdownOrigin = 10;
   countdownNumber.textContent = state.countdownOrigin;
+  // Clear the existing timer interval
+  clearInterval(state.timer);
+  //start a new timer
+  setInterval(countdownTimer, 1000);
 
   // Flip all cards back
   cards.forEach((card) => {
