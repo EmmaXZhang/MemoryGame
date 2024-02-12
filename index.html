@@ -17,16 +17,15 @@
     <script src="./game.js" defer></script>
   </head>
   <body>
-    <header>Memory Game</header>
-
-    <div
-      class="countdown-container"
-      data-duration="60"
-      data-transition="ease"
-      data-color="#c39fe0"
-      data-size="500"
-      data-position="right"
-    ></div>
+    <header>
+      <div id="gameName">Memory Game</div>
+      <div id="countdown">
+        <div id="countdown-number"></div>
+        <svg>
+          <circle r="40" cx="80" cy="80"></circle>
+        </svg>
+      </div>
+    </header>
 
     <div class="container">
       <section class="card">

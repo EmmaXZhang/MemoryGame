@@ -4,6 +4,8 @@ const frontFaces = document.querySelectorAll(".frontFace");
 const winMsg = document.querySelector(".messageText");
 const message = document.querySelector(".message");
 const restartBtn = document.querySelector(".restart");
+const countdownNumberEl = document.getElementById("countdown-number");
+let countdown = 120;
 
 //----------------state variable--------------------------------
 const state = {
@@ -77,7 +79,7 @@ function checkMatch() {
     // Create local variables to store image indices
     const firstIndex = state.firstImgIndex;
     const secondIndex = state.secondImgIndex;
-    //if note, fip back after few second: 2 imgs
+    //if note, fip back 2 imgs after few second
     setTimeout(() => {
       cards[firstIndex].classList.toggle("flipCard");
       cards[secondIndex].classList.toggle("flipCard");
@@ -93,6 +95,14 @@ function reset() {
   state.firstImgIndex = null;
   state.secondImgIndex = null;
 }
+
+//countDown timer
+countdownNumberEl.textContent = countdown;
+
+setInterval(function () {
+  countdown = --countdown <= 0 ? 120 : countdown;
+  countdownNumberEl.textContent = countdown;
+}, 1000);
 
 function init() {
   state.shuffledCards = shuffledNumArr();
