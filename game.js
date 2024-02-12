@@ -16,7 +16,7 @@ const state = {
   imgClickIndex: null,
   isFirstClick: true,
   flippedNum: 0,
-  countdownOrigin: 10,
+  countdownOrigin: 120,
   timer: null,
 };
 
@@ -99,7 +99,7 @@ function reset() {
   state.secondClickNum = null;
   state.firstImgIndex = null;
   state.secondImgIndex = null;
-  state.countdownOrigin = 10;
+  state.countdownOrigin = 120;
 }
 
 //countDown timer
@@ -130,7 +130,7 @@ function restart() {
   message.classList.remove("msgShow");
   countdown.classList.remove("countdown-hide");
   //reset countdown timer to 120
-  state.countdownOrigin = 10;
+  state.countdownOrigin = 120;
   countdownNumber.textContent = state.countdownOrigin;
   // Clear the existing timer interval
   clearInterval(state.timer);
