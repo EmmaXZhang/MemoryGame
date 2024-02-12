@@ -1,11 +1,17 @@
 // element from DOM
-const cards = document.querySelectorAll(".card");
+let cards = document.querySelectorAll(".card");
 const frontFaces = document.querySelectorAll(".frontFace");
 const winMsg = document.querySelector(".messageText");
 const message = document.querySelector(".message");
 const restartBtn = document.querySelector(".restart");
 const countdownNumber = document.getElementById("countdown-number");
 const countdown = document.querySelector("#countdown");
+const cardContainer = document.querySelector(".container");
+const DIFFICULTY = {
+  EASY: 8,
+  HARD: 10,
+};
+
 //----------------state variable--------------------------------
 const state = {
   firstClickNum: null,
@@ -18,9 +24,9 @@ const state = {
   flippedNum: 0,
   countdownOrigin: 60,
   timer: null,
+  numberOfCards: 0,
 };
 
-init();
 //-----------------event-----------------------------------------
 //click card
 cards.forEach(function (card) {
@@ -30,15 +36,24 @@ cards.forEach(function (card) {
 restartBtn.addEventListener("click", restart);
 
 //-------------------------functions----------------------------------
-//timer count down
-state.timer = setInterval(countdownTimer, 1000);
 
 //shuffled cards
-function shuffledNumArr() {
-  //generate random num from 1-8
-  const cardNum = Array.from({ length: 8 }, (_, index) => index + 1);
-  //Duplicate each number to form 8 pairs nums array
-  const pairs = cardNum.flatMap((number) => [number, number]);
+function shuffledNumArr(numberOfCards) {
+  let cardNum;
+  let pairs;
+  switch (numberOfCards) {
+    case 8:
+      //generate random num from 1-8
+      cardNum = Array.from({ length: 8 }, (_, index) => index + 1);
+      break;
+    case 10:
+      //generate random num from 1-10
+      cardNum = Array.from({ length: 10 }, (_, index) => index + 1);
+      break;
+  }
+
+  //Duplicate each number to form 8 or10 pairs nums array
+  pairs = cardNum.flatMap((number) => [number, number]);
   //Shuffle the pairs number array
   for (let i = pairs.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -116,14 +131,68 @@ function countdownTimer() {
   }
 }
 
-function init() {
-  state.shuffledCards = shuffledNumArr();
+function init(numberOfCards) {
+  //timer count down
+  state.timer = setInterval(countdownTimer, 1000);
+  state.numberOfCards = numberOfCards;
+  state.shuffledCards = shuffledNumArr(numberOfCards);
   // linked shuffled card number array to images
-  cards.forEach((card, index) => {
-    let randomImgSrc =
-      "./css/images/animal" + state.shuffledCards[index] + ".png";
-    card.querySelector(".front-face").setAttribute("src", randomImgSrc);
-  });
+  //easy mode
+  if (numberOfCards === DIFFICULTY.EASY) {
+    cards.forEach((card, index) => {
+      let randomImgSrc =
+        "./css/images/animal" + state.shuffledCards[index] + ".png";
+      card.querySelector(".front-face").setAttribute("src", randomImgSrc);
+    });
+  } else if (numberOfCards === DIFFICULTY.HARD) {
+    //----------------------------------------------------------------------hard mode  ????????????
+
+    // add all the new cards
+    const createdNewCards = (DIFFICULTY.HARD - DIFFICULTY.EASY) * 2;
+
+    for (let i = 0; i < createdNewCards; i++) {
+      let newCards = document.createElement("section");
+      newCards.classList.add("card");
+
+      let frontFace = document.createElement("img");
+      frontFace.classList.add("front-face");
+      let backFace = document.createElement("img");
+      backFace.classList.add("back-face");
+
+      // let randomImgSrc =
+      //   "./css/images/animal" + state.shuffledCards[index] + ".png";
+      // frontFace.setAttribute("src", randomImgSrc);
+      backFace.setAttribute("src", "./css/images/question-mark.png");
+
+      newCards.appendChild(frontFace);
+      newCards.appendChild(backFace);
+
+      cardContainer.appendChild(newCards);
+    }
+
+    cards = document.querySelectorAll(".card");
+    cards.forEach((card, index) => {
+      let randomImgSrc =
+        "./css/images/animal" + state.shuffledCards[index] + ".png";
+      card.querySelector(".front-face").setAttribute("src", randomImgSrc);
+      if (index >= 0 && index <= 15) {
+      } else {
+        // let newCards = document.createElement("section");
+        // newCards.classList.add("card");
+        // let frontFace = document.createElement("img");
+        // frontFace.classList.add("front-face");
+        // let backFace = document.createElement("img");
+        // backFace.classList.add("back-face");
+        // let randomImgSrc =
+        //   "./css/images/animal" + state.shuffledCards[index] + ".png";
+        // frontFace.setAttribute("src", randomImgSrc);
+        // backFace.setAttribute("src", "./css/images/question-mark.png");
+        // newCards.appendChild(frontFace);
+        // newCards.appendChild(backFace);
+        // cardContainer.appendChild(newCards);
+      }
+    });
+  }
 }
 
 function restart() {
@@ -142,7 +211,7 @@ function restart() {
     card.classList.remove("flipCard");
   });
   // Re-initialize the game
-  init();
+  init(state.numberOfCards);
 
   //enable flipCard
   cards.forEach(function (card) {

@@ -13,9 +13,8 @@
       href="https://fonts.googleapis.com/css2?family=Sixtyfour&family=Workbench&display=swap"
       rel="stylesheet"
     />
-
-    <script src="./game.js" defer></script>
   </head>
+
   <body>
     <header>
       <div id="gameName">Memory Game</div>
@@ -27,6 +26,8 @@
       </div>
     </header>
 
+    <div><button id="EazyMode">Easy</button></div>
+    <div><button id="HardMode">Hard</button></div>
     <div class="container">
       <section class="card">
         <img src="./css/images/animal1.png" alt="dog" class="front-face" />
@@ -179,5 +180,8 @@
       <div class="messageText"></div>
       <button class="restart">Restart</button>
     </div>
+
+    <script src="./menu.js" defer></script>
+    <script src="./game.js" defer></script>
   </body>
 </html>

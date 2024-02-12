@@ -25,9 +25,10 @@ header {
 }
 
 .container {
+  display: none;
   height: 100vh;
   width: 100vw;
-  display: grid;
+  /* display: grid; */
   /* center container element */
   align-content: center;
   justify-content: center;
@@ -35,7 +36,7 @@ header {
 
   grid-template-columns: auto auto auto auto;
   grid-template-rows: auto auto auto auto;
-
+  grid-auto-rows: auto;
   /* create 3d flip effect for child elements */
   perspective: 1000px;
 }
@@ -71,7 +72,8 @@ header {
   height: 100%;
   width: 100%;
   position: absolute;
-  /* sets whether the back face of an element is visible when turned towards the user. 3d反过来的时候是否可以从正面看到反过去那一面的背部-镜像 */
+  /* sets whether the back face of an element is visible when turned towards the user. 
+  3d反过来的时候是否可以从正面看到反过去那一面的背部-镜像 */
   backface-visibility: hidden;
 }
 
