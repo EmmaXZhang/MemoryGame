@@ -145,7 +145,7 @@ function init(numberOfCards) {
       card.querySelector(".front-face").setAttribute("src", randomImgSrc);
     });
   } else if (numberOfCards === DIFFICULTY.HARD) {
-    //----------------------------------------------------------------------hard mode  ????????????
+    //----------------------------------------------------------------------hard mode
 
     // add all the new cards
     const createdNewCards = (DIFFICULTY.HARD - DIFFICULTY.EASY) * 2;
@@ -159,38 +159,18 @@ function init(numberOfCards) {
       let backFace = document.createElement("img");
       backFace.classList.add("back-face");
 
-      // let randomImgSrc =
-      //   "./css/images/animal" + state.shuffledCards[index] + ".png";
-      // frontFace.setAttribute("src", randomImgSrc);
       backFace.setAttribute("src", "./css/images/question-mark.png");
-
       newCards.appendChild(frontFace);
       newCards.appendChild(backFace);
-
       cardContainer.appendChild(newCards);
     }
 
     cards = document.querySelectorAll(".card");
+
     cards.forEach((card, index) => {
       let randomImgSrc =
         "./css/images/animal" + state.shuffledCards[index] + ".png";
       card.querySelector(".front-face").setAttribute("src", randomImgSrc);
-      if (index >= 0 && index <= 15) {
-      } else {
-        // let newCards = document.createElement("section");
-        // newCards.classList.add("card");
-        // let frontFace = document.createElement("img");
-        // frontFace.classList.add("front-face");
-        // let backFace = document.createElement("img");
-        // backFace.classList.add("back-face");
-        // let randomImgSrc =
-        //   "./css/images/animal" + state.shuffledCards[index] + ".png";
-        // frontFace.setAttribute("src", randomImgSrc);
-        // backFace.setAttribute("src", "./css/images/question-mark.png");
-        // newCards.appendChild(frontFace);
-        // newCards.appendChild(backFace);
-        // cardContainer.appendChild(newCards);
-      }
     });
   }
 }
