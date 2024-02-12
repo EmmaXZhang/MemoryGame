@@ -16,7 +16,8 @@ const state = {
   imgClickIndex: null,
   isFirstClick: true,
   flippedNum: 0,
-  countdownOrigin: 120,
+  countdownOrigin: 10,
+  timer: null,
 };
 
 init();
@@ -95,22 +96,25 @@ function reset() {
   state.secondClickNum = null;
   state.firstImgIndex = null;
   state.secondImgIndex = null;
-  state.countdownOrigin = 120;
+  state.countdownOrigin = 10;
 }
 
 //countDown timer
-countdownNumber.textContent = state.countdownOrigin;
-
-const interval = setInterval(function () {
-  state.countdownOrigin =
-    --state.countdownOrigin <= 0 ? 0 : state.countdownOrigin;
-  countdownNumber.textContent = state.countdownOrigin;
-  if (state.countdownOrigin == 0) {
-    clearInterval(interval);
+function countdownTimer() {
+  if (state.countdownOrigin > 0) {
+    state.countdownOrigin--;
+    countdownNumber.textContent = state.countdownOrigin;
+  } else if (state.countdownOrigin == 0) {
+    winMsg.innerText = "You lose";
+    countdown.classList.add("countdown-hide");
+    message.classList.add("msgShow");
+  } else {
+    return;
   }
-}, 1000);
+}
 
 function init() {
+  state.timer = setInterval(countdownTimer, 1000);
   state.shuffledCards = shuffledNumArr();
   // linked shuffled card number array to images
   cards.forEach((card, index) => {
@@ -123,12 +127,17 @@ function init() {
 function restart() {
   message.classList.remove("msgShow");
   countdown.classList.remove("countdown-hide");
+  //reset countdown timer to 120
+  state.countdownOrigin = 10;
+  countdownNumber.textContent = state.countdownOrigin;
+
   // Flip all cards back
   cards.forEach((card) => {
     card.classList.remove("flipCard");
   });
   // Re-initialize the game
   init();
+
   //enable flipCard
   cards.forEach(function (card) {
     card.addEventListener("click", flipCard);
