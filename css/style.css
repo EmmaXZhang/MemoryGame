@@ -140,7 +140,7 @@ svg circle {
   stroke-width: 4px;
   stroke: rgb(99, 122, 159);
   fill: none;
-  animation: countdown 60s linear infinite forwards;
+  animation: countdown 30s linear infinite forwards;
 }
 
 @keyframes countdown {
@@ -158,9 +158,6 @@ svg circle {
   border-radius: 12px;
   font-family: "Protest Riot", sans-serif;
   color: rgb(79, 111, 82);
-  /* --_color: var(--color, rgb(169, 144, 126)); */
-  /* --color: hsl(var(--color-hue) 60% 50%);
-  animation: 5s color-hue linear infinite; */
 }
 
 .restart:hover {

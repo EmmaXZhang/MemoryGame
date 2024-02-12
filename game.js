@@ -135,7 +135,7 @@ function restart() {
   // Clear the existing timer interval
   clearInterval(state.timer);
   //start a new timer
-  setInterval(countdownTimer, 1000);
+  state.timer = setInterval(countdownTimer, 1000);
 
   // Flip all cards back
   cards.forEach((card) => {
