@@ -140,7 +140,7 @@ svg circle {
   stroke-width: 4px;
   stroke: rgb(99, 122, 159);
   fill: none;
-  animation: countdown 60s linear infinite forwards;
+  animation: countdown 60s linear forwards;
 }
 
 @keyframes countdown {
@@ -148,7 +148,7 @@ svg circle {
     stroke-dashoffset: 0px;
   }
   to {
-    stroke-dashoffset: 113px;
+    stroke-dashoffset: 251.2px;
   }
 }
 
