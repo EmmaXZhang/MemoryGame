@@ -4,9 +4,8 @@ const frontFaces = document.querySelectorAll(".frontFace");
 const winMsg = document.querySelector(".messageText");
 const message = document.querySelector(".message");
 const restartBtn = document.querySelector(".restart");
-const countdownNumberEl = document.getElementById("countdown-number");
-let countdown = 120;
-
+const countdownNumber = document.getElementById("countdown-number");
+const countdown = document.querySelector("#countdown");
 //----------------state variable--------------------------------
 const state = {
   firstClickNum: null,
@@ -17,6 +16,7 @@ const state = {
   imgClickIndex: null,
   isFirstClick: true,
   flippedNum: 0,
+  countdownOrigin: 120,
 };
 
 init();
@@ -72,6 +72,7 @@ function checkMatch() {
     //check Win
     if (state.flippedNum === 16) {
       winMsg.innerText = "Yeah! You Win";
+      countdown.classList.add("countdown-hide");
       message.classList.add("msgShow");
     }
     reset();
@@ -94,14 +95,19 @@ function reset() {
   state.secondClickNum = null;
   state.firstImgIndex = null;
   state.secondImgIndex = null;
+  state.countdownOrigin = 120;
 }
 
 //countDown timer
-countdownNumberEl.textContent = countdown;
+countdownNumber.textContent = state.countdownOrigin;
 
-setInterval(function () {
-  countdown = --countdown <= 0 ? 120 : countdown;
-  countdownNumberEl.textContent = countdown;
+const interval = setInterval(function () {
+  state.countdownOrigin =
+    --state.countdownOrigin <= 0 ? 0 : state.countdownOrigin;
+  countdownNumber.textContent = state.countdownOrigin;
+  if (state.countdownOrigin == 0) {
+    clearInterval(interval);
+  }
 }, 1000);
 
 function init() {
@@ -116,7 +122,7 @@ function init() {
 
 function restart() {
   message.classList.remove("msgShow");
-  reset();
+  countdown.classList.remove("countdown-hide");
   // Flip all cards back
   cards.forEach((card) => {
     card.classList.remove("flipCard");

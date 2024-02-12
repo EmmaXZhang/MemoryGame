@@ -119,6 +119,10 @@ header {
   z-index: 1;
 }
 
+#countdown.countdown-hide {
+  display: none;
+}
+
 #countdown-number {
   color: rgb(99, 122, 159);
   display: inline-block;
