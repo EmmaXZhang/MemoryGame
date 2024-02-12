@@ -6,10 +6,6 @@ const message = document.querySelector(".message");
 const restartBtn = document.querySelector(".restart");
 const countdownNumber = document.getElementById("countdown-number");
 const countdown = document.querySelector("#countdown");
-//have different game levels
-const urlParams = new URLSearchParams(Window.location.search);
-const difficulty = urlParams.get("difficulty");
-
 //----------------state variable--------------------------------
 const state = {
   firstClickNum: null,
@@ -38,21 +34,9 @@ restartBtn.addEventListener("click", restart);
 state.timer = setInterval(countdownTimer, 1000);
 
 //shuffled cards
-function shuffledNumArr(difficulty) {
-  let cardNum;
-  switch (difficulty) {
-    case "easy":
-      cardNum = Array.from({ length: 6 }, (_, index) => index + 1); // Adjust according to difficulty levels
-      break;
-    case "medium":
-      cardNum = Array.from({ length: 8 }, (_, index) => index + 1);
-      break;
-    case "hard":
-      cardNum = Array.from({ length: 10 }, (_, index) => index + 1);
-      break;
-    default:
-      cardNum = Array.from({ length: 6 }, (_, index) => index + 1); // Default to easy if no difficulty selected
-  }
+function shuffledNumArr() {
+  //generate random num from 1-8
+  const cardNum = Array.from({ length: 8 }, (_, index) => index + 1);
   //Duplicate each number to form 8 pairs nums array
   const pairs = cardNum.flatMap((number) => [number, number]);
   //Shuffle the pairs number array
@@ -133,7 +117,7 @@ function countdownTimer() {
 }
 
 function init() {
-  state.shuffledCards = shuffledNumArr(difficulty);
+  state.shuffledCards = shuffledNumArr();
   // linked shuffled card number array to images
   cards.forEach((card, index) => {
     let randomImgSrc =
