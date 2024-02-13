@@ -42,8 +42,8 @@ header {
 }
 
 .card {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   background: rgb(232, 200, 114);
   border: 2px solid rgb(255, 243, 207);
   cursor: pointer;
@@ -165,4 +165,58 @@ svg circle {
 .restart:hover {
   background-color: rgb(103, 93, 80);
   color: white;
+}
+
+.gameDifficulty {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto auto auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(255, 243, 207);
+  justify-content: center;
+  align-items: center;
+}
+
+.gameDifficulty > button {
+  font-size: 35px;
+  margin-top: 20px;
+  padding: 5px;
+  border-radius: 15px;
+  font-family: "Honk", system-ui;
+  color: rgb(255, 173, 132);
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gameDifficulty > button:hover {
+  background-color: rgb(201, 215, 221);
+  color: rgb(103, 93, 80);
+}
+
+.welcomeMsg {
+  color: rgb(255, 196, 126);
+  font-size: 50px;
+  font-family: "Workbench", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gameModeChoice {
+  color: rgb(255, 196, 126);
+  font-size: 40px;
+  font-family: "Workbench", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gameDifficulty.hide {
+  display: none;
 }

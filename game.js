@@ -51,7 +51,6 @@ function shuffledNumArr(numberOfCards) {
       cardNum = Array.from({ length: 10 }, (_, index) => index + 1);
       break;
   }
-
   //Duplicate each number to form 8 or10 pairs nums array
   pairs = cardNum.flatMap((number) => [number, number]);
   //Shuffle the pairs number array
@@ -77,11 +76,11 @@ function flipCard() {
     state.secondClickNum = state.shuffledCards[state.secondImgIndex];
     state.isFirstClick = true;
     //check pair match
-    checkMatch();
+    checkMatch(state.numberOfCards);
   }
 }
 
-function checkMatch() {
+function checkMatch(numberOfCards) {
   if (state.firstClickNum === state.secondClickNum) {
     //if same, keep img open
     cards[state.firstImgIndex].removeEventListener("click", flipCard);
@@ -89,13 +88,25 @@ function checkMatch() {
 
     state.flippedNum += 2;
     //check Win
-    if (state.flippedNum === 16) {
+    if (
+      numberOfCards == DIFFICULTY.EASY &&
+      state.flippedNum === DIFFICULTY.EASY * 2
+    ) {
       winMsg.innerText = "Yeah! You Win";
       countdown.classList.add("countdown-hide");
       message.classList.add("msgShow");
+      reset();
+    } else if (
+      numberOfCards == DIFFICULTY.HARD &&
+      state.flippedNum === DIFFICULTY.HARD * 2
+    ) {
+      winMsg.innerText = "Yeah! You Win";
+      countdown.classList.add("countdown-hide");
+      message.classList.add("msgShow");
+      reset();
     }
-    reset();
   } else {
+    //check not Match
     // Create local variables to store image indices
     const firstIndex = state.firstImgIndex;
     const secondIndex = state.secondImgIndex;
@@ -115,6 +126,7 @@ function reset() {
   state.firstImgIndex = null;
   state.secondImgIndex = null;
   state.countdownOrigin = 60;
+  // reset card number  ????????????????
 }
 
 //countDown timer
@@ -134,44 +146,46 @@ function countdownTimer() {
 function init(numberOfCards) {
   //timer count down
   state.timer = setInterval(countdownTimer, 1000);
+  //link to player choice
   state.numberOfCards = numberOfCards;
+
   state.shuffledCards = shuffledNumArr(numberOfCards);
   // linked shuffled card number array to images
   //easy mode
   if (numberOfCards === DIFFICULTY.EASY) {
-    cards.forEach((card, index) => {
-      let randomImgSrc =
-        "./css/images/animal" + state.shuffledCards[index] + ".png";
-      card.querySelector(".front-face").setAttribute("src", randomImgSrc);
-    });
+    cardRender();
   } else if (numberOfCards === DIFFICULTY.HARD) {
-    //----------------------------------------------------------------------hard mode
-
+    //----------------------------------------------------------------------hard mode ??? bug to be fix
     // add all the new cards
     const createdNewCards = (DIFFICULTY.HARD - DIFFICULTY.EASY) * 2;
 
     for (let i = 0; i < createdNewCards; i++) {
       let newCards = document.createElement("section");
       newCards.classList.add("card");
-
+      //newCard identifier
+      newCards.classList.add("newCard");
+      //add frontFace/backFace img class
       let frontFace = document.createElement("img");
       frontFace.classList.add("front-face");
       let backFace = document.createElement("img");
       backFace.classList.add("back-face");
-
+      //back face image link
       backFace.setAttribute("src", "./css/images/question-mark.png");
+      //add frontFace/backFace to newCards class
       newCards.appendChild(frontFace);
       newCards.appendChild(backFace);
+      //addback to container
       cardContainer.appendChild(newCards);
     }
-
+    //reselect all cards
     cards = document.querySelectorAll(".card");
 
-    cards.forEach((card, index) => {
-      let randomImgSrc =
-        "./css/images/animal" + state.shuffledCards[index] + ".png";
-      card.querySelector(".front-face").setAttribute("src", randomImgSrc);
+    //enable flipcard
+    cards.forEach(function (card) {
+      card.addEventListener("click", flipCard);
     });
+
+    cardRender();
   }
 }
 
@@ -186,6 +200,10 @@ function restart() {
   //start a new timer
   state.timer = setInterval(countdownTimer, 1000);
 
+  //remove newly added cards via giving new class name-----------------------?????????
+  let newCardsToRemove = document.querySelectorAll(".newCard");
+  newCardsToRemove.forEach((card) => card.remove());
+
   // Flip all cards back
   cards.forEach((card) => {
     card.classList.remove("flipCard");
@@ -196,5 +214,13 @@ function restart() {
   //enable flipCard
   cards.forEach(function (card) {
     card.addEventListener("click", flipCard);
+  });
+}
+
+function cardRender() {
+  cards.forEach((card, index) => {
+    let randomImgSrc =
+      "./css/images/animal" + state.shuffledCards[index] + ".png";
+    card.querySelector(".front-face").setAttribute("src", randomImgSrc);
   });
 }
