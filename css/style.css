@@ -93,7 +93,7 @@ header {
 
 /* countdown timer */
 #countdown {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   height: 160px;
@@ -102,8 +102,8 @@ header {
   z-index: 1;
 }
 
-#countdown.countdown-hide {
-  display: none;
+#countdown.countdown-show {
+  display: flex;
 }
 
 #countdown-number {

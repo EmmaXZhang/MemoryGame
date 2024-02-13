@@ -115,7 +115,7 @@ function checkMatch(numberOfCards) {
       state.flippedNum === DIFFICULTY.EASY * 2
     ) {
       winMsg.innerText = "Yeah! You Win";
-      countdown.classList.add("countdown-hide");
+      countdown.classList.remove("countdown-show");
       //clear countdown timer
       clearInterval(state.timer);
       message.classList.add("msgShow");
@@ -125,7 +125,7 @@ function checkMatch(numberOfCards) {
       state.flippedNum === DIFFICULTY.HARD * 2
     ) {
       winMsg.innerText = "Yeah! You Win";
-      countdown.classList.add("countdown-hide");
+      countdown.classList.remove("countdown-show");
       //clear countdown timer
       clearInterval(state.timer);
       message.classList.add("msgShow");
@@ -161,7 +161,7 @@ function countdownTimer() {
     countdownNumber.textContent = state.countdownOrigin;
   } else if (state.countdownOrigin == 0) {
     winMsg.innerText = "You lose";
-    countdown.classList.add("countdown-hide");
+    countdown.classList.remove("countdown-show");
     message.classList.add("msgShow");
   } else {
     return;
@@ -169,6 +169,8 @@ function countdownTimer() {
 }
 
 function init(numberOfCards) {
+  countdown.classList.add("countdown-show");
+
   //timer count down
   state.timer = setInterval(countdownTimer, 1000);
   //link to player choice
@@ -225,7 +227,7 @@ function restart() {
   btnClickSound.play();
 
   message.classList.remove("msgShow");
-  countdown.classList.remove("countdown-hide");
+  countdown.classList.add("countdown-show");
 
   //reset countdown timer to 60
   state.countdownOrigin = 60;
