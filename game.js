@@ -61,6 +61,12 @@ function shuffledNumArr(numberOfCards) {
 }
 
 function flipCard() {
+  //check if the card flip up or not to avoid second click to flip back
+  if (this.classList.contains("flipCard")) {
+    // Card already flipped, do nothing
+    return;
+  }
+
   //use "this" to get "card" element
   this.classList.toggle("flipCard"); // toggle-if the class is present-removed, not present-added.
   //check is second click img == first click img. (Num same), also store 1st and 2nd img index

@@ -130,22 +130,58 @@ header {
 }
 
 .gameDifficulty > button {
-  font-size: 35px;
+  /* font-size: 35px;
   margin-top: 20px;
   padding: 5px;
   border-radius: 15px;
-  font-family: "Honk", system-ui;
+  font-family: "Barriecito", system-ui;
   color: rgb(255, 173, 132);
   display: flex;
   align-items: center;
   justify-content: center;
   place-self: center;
+  width: 200px; */
+  background: linear-gradient(
+    to bottom right,
+    rgb(255, 173, 132),
+    rgb(255, 227, 130)
+  );
+  border: 0;
+  border-radius: 12px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Barriecito", system-ui;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2.5;
+  outline: transparent;
+  padding: 0 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow 0.2s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  place-self: center;
   width: 200px;
 }
 
-.gameDifficulty > button:hover {
+/* .gameDifficulty > button:hover {
   background-color: rgb(201, 215, 221);
   color: rgb(103, 93, 80);
+} */
+
+.gameDifficulty > button:not([disabled]):focus {
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5),
+    -0.125rem -0.125rem 1rem rgba(239, 71, 101, 0.5),
+    0.125rem 0.125rem 1rem rgba(255, 154, 90, 0.5);
+}
+.gameDifficulty > button:not([disabled]):hover {
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5),
+    -0.125rem -0.125rem 1rem rgba(239, 71, 101, 0.5),
+    0.125rem 0.125rem 1rem rgba(255, 154, 90, 0.5);
 }
 
 .gameModeChoice {
@@ -220,7 +256,7 @@ svg circle {
 }
 
 .welcomeMsg {
-  color: rgb(255, 196, 126);
+  color: rgb(255, 185, 150);
   font-size: 50px;
   font-family: "Workbench", sans-serif;
   display: flex;
