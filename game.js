@@ -32,7 +32,6 @@ const state = {
 cards.forEach(function (card) {
   card.addEventListener("click", flipCard);
 });
-
 restartBtn.addEventListener("click", restart);
 
 //-------------------------functions----------------------------------
@@ -126,7 +125,6 @@ function reset() {
   state.firstImgIndex = null;
   state.secondImgIndex = null;
   state.countdownOrigin = 60;
-  // reset card number  ????????????????
 }
 
 //countDown timer
@@ -158,7 +156,6 @@ function init(numberOfCards) {
     //----------------------------------------------------------------------hard mode ??? bug to be fix
     // add all the new cards
     const createdNewCards = (DIFFICULTY.HARD - DIFFICULTY.EASY) * 2;
-
     for (let i = 0; i < createdNewCards; i++) {
       let newCards = document.createElement("section");
       newCards.classList.add("card");
@@ -192,6 +189,10 @@ function init(numberOfCards) {
 function restart() {
   message.classList.remove("msgShow");
   countdown.classList.remove("countdown-hide");
+
+  //go back to home page
+  // document.querySelector(".gameDifficulty").classList.remove("hide");
+
   //reset countdown timer to 60
   state.countdownOrigin = 60;
   countdownNumber.textContent = state.countdownOrigin;
@@ -200,17 +201,15 @@ function restart() {
   //start a new timer
   state.timer = setInterval(countdownTimer, 1000);
 
-  //remove newly added cards via giving new class name-----------------------?????????
+  //remove old newCards via giving newCard class name
   let newCardsToRemove = document.querySelectorAll(".newCard");
   newCardsToRemove.forEach((card) => card.remove());
-
+  // Re-initialize the game
+  init(state.numberOfCards);
   // Flip all cards back
   cards.forEach((card) => {
     card.classList.remove("flipCard");
   });
-  // Re-initialize the game
-  init(state.numberOfCards);
-
   //enable flipCard
   cards.forEach(function (card) {
     card.addEventListener("click", flipCard);

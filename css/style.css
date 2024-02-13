@@ -19,15 +19,38 @@ header {
   align-items: center;
 }
 
-#gameName {
-  grid-column: span 2;
-  text-align: center;
+.front-face,
+.back-face {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  /* sets whether the back face of an element is visible when turned towards the user. 
+  3d反过来的时候是否可以从正面看到反过去那一面的背部-镜像 */
+  backface-visibility: hidden;
+}
+
+.front-face {
+  background: rgb(99, 122, 159);
+  /* show front face  */
+  transform: rotateY(180deg);
+}
+
+.back-face {
+  background: rgb(232, 200, 114);
+}
+
+/* click effect on card, scale down 0.97 of original size */
+.card:active {
+  transform: scale(0.97);
+}
+
+/* flip card effect,rotate y axis after click */
+.card.flipCard {
+  transform: rotateY(180deg);
 }
 
 .container {
   display: none;
-  height: 100vh;
-  width: 100vw;
   /* display: grid; */
   /* center container element */
   align-content: center;
@@ -57,34 +80,94 @@ header {
   transition: transform 0.7s;
 }
 
-/* click effect on card, scale down 0.97 of original size */
-.card:active {
-  transform: scale(0.97);
+/* countdown timer */
+#countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 160px;
+  width: 160px;
+  background-color: rgb(255, 243, 207);
+  z-index: 1;
 }
 
-/* flip card effect,rotate y axis after click */
-.card.flipCard {
-  transform: rotateY(180deg);
+#countdown.countdown-hide {
+  display: none;
 }
 
-.front-face,
-.back-face {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  /* sets whether the back face of an element is visible when turned towards the user. 
-  3d反过来的时候是否可以从正面看到反过去那一面的背部-镜像 */
-  backface-visibility: hidden;
+#countdown-number {
+  color: rgb(99, 122, 159);
+  display: inline-block;
+  font-size: 24px;
 }
 
-.front-face {
-  background: rgb(99, 122, 159);
-  /* show front face  */
-  transform: rotateY(180deg);
+@keyframes countdown {
+  from {
+    stroke-dashoffset: 0px;
+  }
+  to {
+    stroke-dashoffset: 251.2px;
+  }
 }
 
-.back-face {
-  background: rgb(232, 200, 114);
+#gameName {
+  grid-column: span 2;
+  text-align: center;
+}
+
+.gameDifficulty {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto auto auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(255, 243, 207);
+  justify-content: center;
+  align-items: center;
+}
+
+.gameDifficulty > button {
+  font-size: 35px;
+  margin-top: 20px;
+  padding: 5px;
+  border-radius: 15px;
+  font-family: "Honk", system-ui;
+  color: rgb(255, 173, 132);
+  /* width: 50%; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  place-self: center;
+  width: 200px;
+}
+
+.gameDifficulty > button:hover {
+  background-color: rgb(201, 215, 221);
+  color: rgb(103, 93, 80);
+}
+
+.gameModeChoice {
+  color: rgb(255, 196, 126);
+  font-size: 40px;
+  font-family: "Workbench", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gameDifficulty.hide {
+  display: none;
+}
+
+.gamePage {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
 }
 
 /* winning message showing case, hidden firs */
@@ -109,25 +192,17 @@ header {
   display: flex;
 }
 
-/* countdown timer */
-#countdown {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 160px;
-  width: 160px;
-  background-color: rgb(255, 243, 207);
-  z-index: 1;
+.restart {
+  font-size: 40px;
+  margin-top: 20px;
+  border-radius: 12px;
+  font-family: "Protest Riot", sans-serif;
+  color: rgb(79, 111, 82);
 }
 
-#countdown.countdown-hide {
-  display: none;
-}
-
-#countdown-number {
-  color: rgb(99, 122, 159);
-  display: inline-block;
-  font-size: 24px;
+.restart:hover {
+  background-color: rgb(103, 93, 80);
+  color: white;
 }
 
 svg {
@@ -142,61 +217,7 @@ svg circle {
   stroke-width: 4px;
   stroke: rgb(99, 122, 159);
   fill: none;
-  animation: countdown 60s linear forwards;
-}
-
-@keyframes countdown {
-  from {
-    stroke-dashoffset: 0px;
-  }
-  to {
-    stroke-dashoffset: 251.2px;
-  }
-}
-
-.restart {
-  font-size: 40px;
-  margin-top: 20px;
-  border-radius: 12px;
-  font-family: "Protest Riot", sans-serif;
-  color: rgb(79, 111, 82);
-}
-
-.restart:hover {
-  background-color: rgb(103, 93, 80);
-  color: white;
-}
-
-.gameDifficulty {
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto auto auto auto;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgb(255, 243, 207);
-  justify-content: center;
-  align-items: center;
-}
-
-.gameDifficulty > button {
-  font-size: 35px;
-  margin-top: 20px;
-  padding: 5px;
-  border-radius: 15px;
-  font-family: "Honk", system-ui;
-  color: rgb(255, 173, 132);
-  width: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.gameDifficulty > button:hover {
-  background-color: rgb(201, 215, 221);
-  color: rgb(103, 93, 80);
+  /* animation: countdown 60s linear forwards; */
 }
 
 .welcomeMsg {
@@ -206,17 +227,4 @@ svg circle {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.gameModeChoice {
-  color: rgb(255, 196, 126);
-  font-size: 40px;
-  font-family: "Workbench", sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.gameDifficulty.hide {
-  display: none;
 }
