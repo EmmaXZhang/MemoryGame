@@ -6,6 +6,7 @@ const message = document.querySelector(".message");
 const restartBtn = document.querySelector(".restart");
 const countdownNumber = document.getElementById("countdown-number");
 const countdown = document.querySelector("#countdown");
+const circle = document.querySelector("svg circle");
 const cardContainer = document.querySelector(".container");
 const DIFFICULTY = {
   EASY: 8,
@@ -61,14 +62,14 @@ function shuffledNumArr(numberOfCards) {
 }
 
 function flipCard() {
+  flipCardAudio();
   //check if the card flip up or not to avoid second click to flip back
   if (this.classList.contains("flipCard")) {
-    // Card already flipped, do nothing
     return;
   }
 
   //use "this" to get "card" element
-  this.classList.toggle("flipCard"); // toggle-if the class is present-removed, not present-added.
+  this.classList.toggle("flipCard"); // toggle-class present-removed, not present-added.
   //check is second click img == first click img. (Num same), also store 1st and 2nd img index
   state.imgClickIndex = Array.from(cards).indexOf(this); //get image index from "cards" notelist
 
@@ -163,7 +164,6 @@ function init(numberOfCards) {
   if (numberOfCards === DIFFICULTY.EASY) {
     cardRender();
   } else if (numberOfCards === DIFFICULTY.HARD) {
-    //----------------------------------------------------------------------hard mode ??? bug to be fix
     // add all the new cards
     const createdNewCards = (DIFFICULTY.HARD - DIFFICULTY.EASY) * 2;
     for (let i = 0; i < createdNewCards; i++) {
@@ -194,6 +194,10 @@ function init(numberOfCards) {
 
     cardRender();
   }
+
+  // add the circle animation to game page -css
+  circle.style.animation = "countdown 60s linear forwards";
+  circle.style.display = "block";
 }
 
 function restart() {
@@ -205,8 +209,6 @@ function restart() {
   countdownNumber.textContent = state.countdownOrigin;
   // Clear the existing timer interval
   clearInterval(state.timer);
-  //start a new timer
-  // state.timer = setInterval(countdownTimer, 1000);
 
   //remove old newCards via giving newCard class name
   let newCardsToRemove = document.querySelectorAll(".newCard");
@@ -229,4 +231,12 @@ function cardRender() {
       "./css/images/animal" + state.shuffledCards[index] + ".png";
     card.querySelector(".front-face").setAttribute("src", randomImgSrc);
   });
+}
+
+function flipCardAudio() {
+  const flipSound = new Audio(
+    "https://cdn.freesound.org/previews/240/240776_4107740-lq.mp3"
+  );
+  flipSound.play();
+  flipSound.volume = 0.5;
 }
