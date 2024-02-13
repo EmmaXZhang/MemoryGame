@@ -8,12 +8,14 @@ const countdownNumber = document.getElementById("countdown-number");
 const countdown = document.querySelector("#countdown");
 const circle = document.querySelector("svg circle");
 const cardContainer = document.querySelector(".container");
+const cardsLeftEl = document.querySelector(".cardsLeftText");
 const flipSound = new Audio(
   "https://cdn.freesound.org/previews/240/240776_4107740-lq.mp3"
 );
 const btnClickSound = new Audio(
   "https://cdn.freesound.org/previews/504/504166_9961300-lq.mp3"
 );
+
 const DIFFICULTY = {
   EASY: 8,
   HARD: 10,
@@ -32,6 +34,7 @@ const state = {
   countdownOrigin: 60,
   timer: null,
   numberOfCards: 0,
+  cardsLeft: 0,
 };
 
 //-----------------event-----------------------------------------
@@ -101,6 +104,11 @@ function checkMatch(numberOfCards) {
     cards[state.secondImgIndex].removeEventListener("click", flipCard);
 
     state.flippedNum += 2;
+
+    //display cards Left
+    state.cardsLeft -= 2;
+    cardsLeftEl.innerText = `Cards Left: ${state.cardsLeft}`;
+
     //check Win
     if (
       numberOfCards == DIFFICULTY.EASY &&
@@ -202,6 +210,10 @@ function init(numberOfCards) {
 
     cardRender();
   }
+
+  //cards left number
+  state.cardsLeft = numberOfCards * 2;
+  cardsLeftEl.innerText = `Cards Left: ${state.cardsLeft}`;
 
   // add the circle animation to game page -css
   circle.style.animation = "countdown 60s linear forwards";
