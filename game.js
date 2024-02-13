@@ -12,7 +12,7 @@ const flipSound = new Audio(
   "https://cdn.freesound.org/previews/240/240776_4107740-lq.mp3"
 );
 const btnClickSound = new Audio(
-  "https://cdn.freesound.org/previews/557/557505_9250976-lq.mp3"
+  "https://cdn.freesound.org/previews/504/504166_9961300-lq.mp3"
 );
 const DIFFICULTY = {
   EASY: 8,
@@ -70,6 +70,7 @@ function shuffledNumArr(numberOfCards) {
 function flipCard() {
   // flipCardAudio();
   flipSound.play();
+  flipSound.volume = 0.5;
   //check if the card flip up or not to avoid second click to flip back
   if (this.classList.contains("flipCard")) {
     return;

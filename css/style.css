@@ -96,7 +96,7 @@ header {
 }
 
 #countdown-number {
-  color: rgb(99, 122, 159);
+  color: rgb(236, 86, 10);
   display: inline-block;
   font-size: 24px;
 }
@@ -112,7 +112,8 @@ header {
 
 #gameName {
   grid-column: span 2;
-  text-align: center;
+  /* text-align: center; */
+  justify-items: end;
 }
 
 .gameDifficulty {
@@ -130,17 +131,6 @@ header {
 }
 
 .gameDifficulty > button {
-  /* font-size: 35px;
-  margin-top: 20px;
-  padding: 5px;
-  border-radius: 15px;
-  font-family: "Barriecito", system-ui;
-  color: rgb(255, 173, 132);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  place-self: center;
-  width: 200px; */
   background: linear-gradient(
     to bottom right,
     rgb(255, 173, 132),
@@ -214,7 +204,7 @@ header {
   color: aliceblue;
   font-size: 90px;
   flex-direction: column;
-  font-family: "Protest Riot", sans-serif;
+  font-family: "Barriecito", system-ui;
 }
 
 /* change display to "show" to show message */
@@ -226,7 +216,7 @@ header {
   font-size: 40px;
   margin-top: 20px;
   border-radius: 12px;
-  font-family: "Protest Riot", sans-serif;
+  font-family: "Barriecito", system-ui;
   color: rgb(79, 111, 82);
 }
 
@@ -245,7 +235,7 @@ svg {
 svg circle {
   stroke-dasharray: 251.2px;
   stroke-width: 4px;
-  stroke: rgb(99, 122, 159);
+  stroke: rgb(236, 86, 10);
   fill: none;
   display: none;
 }
