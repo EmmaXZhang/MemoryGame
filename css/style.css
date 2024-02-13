@@ -136,7 +136,6 @@ header {
   border-radius: 15px;
   font-family: "Honk", system-ui;
   color: rgb(255, 173, 132);
-  /* width: 50%; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -217,7 +216,7 @@ svg circle {
   stroke-width: 4px;
   stroke: rgb(99, 122, 159);
   fill: none;
-  /* animation: countdown 60s linear forwards; */
+  animation: countdown 60s linear forwards;
 }
 
 .welcomeMsg {

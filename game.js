@@ -93,8 +93,9 @@ function checkMatch(numberOfCards) {
     ) {
       winMsg.innerText = "Yeah! You Win";
       countdown.classList.add("countdown-hide");
+      //clear countdown timer
+      clearInterval(state.timer);
       message.classList.add("msgShow");
-      //------------------------------------clear count down timer------???
       reset();
     } else if (
       numberOfCards == DIFFICULTY.HARD &&
@@ -102,6 +103,8 @@ function checkMatch(numberOfCards) {
     ) {
       winMsg.innerText = "Yeah! You Win";
       countdown.classList.add("countdown-hide");
+      //clear countdown timer
+      clearInterval(state.timer);
       message.classList.add("msgShow");
       reset();
     }
@@ -197,7 +200,7 @@ function restart() {
   // Clear the existing timer interval
   clearInterval(state.timer);
   //start a new timer
-  state.timer = setInterval(countdownTimer, 1000);
+  // state.timer = setInterval(countdownTimer, 1000);
 
   //remove old newCards via giving newCard class name
   let newCardsToRemove = document.querySelectorAll(".newCard");
