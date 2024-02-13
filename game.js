@@ -8,6 +8,12 @@ const countdownNumber = document.getElementById("countdown-number");
 const countdown = document.querySelector("#countdown");
 const circle = document.querySelector("svg circle");
 const cardContainer = document.querySelector(".container");
+const flipSound = new Audio(
+  "https://cdn.freesound.org/previews/240/240776_4107740-lq.mp3"
+);
+const btnClickSound = new Audio(
+  "https://cdn.freesound.org/previews/557/557505_9250976-lq.mp3"
+);
 const DIFFICULTY = {
   EASY: 8,
   HARD: 10,
@@ -62,7 +68,8 @@ function shuffledNumArr(numberOfCards) {
 }
 
 function flipCard() {
-  flipCardAudio();
+  // flipCardAudio();
+  flipSound.play();
   //check if the card flip up or not to avoid second click to flip back
   if (this.classList.contains("flipCard")) {
     return;
@@ -201,6 +208,9 @@ function init(numberOfCards) {
 }
 
 function restart() {
+  //play click sound
+  btnClickSound.play();
+
   message.classList.remove("msgShow");
   countdown.classList.remove("countdown-hide");
 
@@ -231,12 +241,4 @@ function cardRender() {
       "./css/images/animal" + state.shuffledCards[index] + ".png";
     card.querySelector(".front-face").setAttribute("src", randomImgSrc);
   });
-}
-
-function flipCardAudio() {
-  const flipSound = new Audio(
-    "https://cdn.freesound.org/previews/240/240776_4107740-lq.mp3"
-  );
-  flipSound.play();
-  flipSound.volume = 0.5;
 }
