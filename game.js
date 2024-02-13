@@ -80,7 +80,7 @@ function flipCard() {
   }
 
   //use "this" to get "card" element
-  this.classList.toggle("flipCard"); // toggle-class present-removed, not present-added.
+  this.classList.toggle("flipCard");
   //check is second click img == first click img. (Num same), also store 1st and 2nd img index
   state.imgClickIndex = Array.from(cards).indexOf(this); //get image index from "cards" notelist
 
