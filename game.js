@@ -94,6 +94,7 @@ function checkMatch(numberOfCards) {
       winMsg.innerText = "Yeah! You Win";
       countdown.classList.add("countdown-hide");
       message.classList.add("msgShow");
+      //------------------------------------clear count down timer------???
       reset();
     } else if (
       numberOfCards == DIFFICULTY.HARD &&
@@ -124,7 +125,7 @@ function reset() {
   state.secondClickNum = null;
   state.firstImgIndex = null;
   state.secondImgIndex = null;
-  state.countdownOrigin = 60;
+  // state.countdownOrigin = 60;
 }
 
 //countDown timer
@@ -189,9 +190,6 @@ function init(numberOfCards) {
 function restart() {
   message.classList.remove("msgShow");
   countdown.classList.remove("countdown-hide");
-
-  //go back to home page
-  // document.querySelector(".gameDifficulty").classList.remove("hide");
 
   //reset countdown timer to 60
   state.countdownOrigin = 60;
