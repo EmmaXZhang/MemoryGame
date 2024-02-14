@@ -161,6 +161,7 @@ function countdownTimer() {
     winMsg.innerText = "You lose";
     countdown.classList.remove("countdown-show");
     message.classList.add("msgShow");
+    clearInterval(state.timer); // Stop the countdown timer
   } else {
     return;
   }
