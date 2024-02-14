@@ -182,13 +182,10 @@ function init(numberOfCards) {
 function restart() {
   //play click sound
   btnClickSound.play();
-
-  //show home page??????????
+  //show game home page
   document.querySelector(".gameDifficulty").classList.remove("hide");
-
   //remove win/lose message page
   message.classList.remove("msgShow");
-  countdown.classList.add("countdown-show");
   //reset countdown timer to 60
   state.countdownOrigin = 60;
   countdownNumber.textContent = state.countdownOrigin;
@@ -196,9 +193,6 @@ function restart() {
   clearInterval(state.timer);
   //remove old newCards - newCard class name
   document.querySelectorAll(".newCard").forEach((card) => card.remove());
-
-  // Re-initialize the game
-  init(state.numberOfCards);
   // Flip all cards back
   cards.forEach((card) => {
     card.classList.remove("flipCard");
