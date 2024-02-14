@@ -171,11 +171,9 @@ function init(numberOfCards) {
   state.shuffledCards = shuffledNumArr(numberOfCards);
   // linked shuffled card number array to images
   cardDivNum(numberOfCards);
-
   //cards left number
   state.cardsLeft = numberOfCards * 2;
   cardsLeftEl.innerText = `Cards Left: ${state.cardsLeft}`;
-
   // add the circle animation to game page -css
   circle.style.animation = "countdown 60s linear forwards";
   circle.style.display = "block";
@@ -185,18 +183,20 @@ function restart() {
   //play click sound
   btnClickSound.play();
 
+  //show home page??????????
+  document.querySelector(".gameDifficulty").classList.remove("hide");
+
+  //remove win/lose message page
   message.classList.remove("msgShow");
   countdown.classList.add("countdown-show");
-
   //reset countdown timer to 60
   state.countdownOrigin = 60;
   countdownNumber.textContent = state.countdownOrigin;
   // Clear the existing timer interval
   clearInterval(state.timer);
+  //remove old newCards - newCard class name
+  document.querySelectorAll(".newCard").forEach((card) => card.remove());
 
-  //remove old newCards via giving newCard class name
-  let newCardsToRemove = document.querySelectorAll(".newCard");
-  newCardsToRemove.forEach((card) => card.remove());
   // Re-initialize the game
   init(state.numberOfCards);
   // Flip all cards back
@@ -233,7 +233,7 @@ function checkWin(numberOfCards) {
   ) {
     winMsg.innerText = "Yeah! You Win";
     countdown.classList.remove("countdown-show");
-    clearInterval(state.timer); // Clear countdown timer
+    clearInterval(state.timer);
     message.classList.add("msgShow");
     reset();
   } else if (
@@ -242,7 +242,7 @@ function checkWin(numberOfCards) {
   ) {
     winMsg.innerText = "Yeah! You Win";
     countdown.classList.remove("countdown-show");
-    clearInterval(state.timer); // Clear countdown timer
+    clearInterval(state.timer);
     message.classList.add("msgShow");
     reset();
   }
