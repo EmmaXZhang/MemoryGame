@@ -231,34 +231,18 @@ function checkWin(numberOfCards) {
 }
 
 function cardDivNum(numberOfCards) {
-  let createdNewCards;
-  switch (numberOfCards) {
-    case DIFFICULTY.EASY:
-      cardRender();
-      break;
-    case DIFFICULTY.MEDIUM:
-      // add all the new cards
-      createdNewCards = (DIFFICULTY.MEDIUM - DIFFICULTY.EASY) * 2;
-      cardDivCreation(createdNewCards);
-      //reselect all cards
-      cards = document.querySelectorAll(".card");
-      //enable flipcard
-      cards.forEach(function (card) {
-        card.addEventListener("click", flipCard);
-      });
-      cardRender();
-      break;
-    case DIFFICULTY.HARD:
-      createdNewCards = (DIFFICULTY.HARD - DIFFICULTY.EASY) * 2;
-      cardDivCreation(createdNewCards);
-      //reselect all cards
-      cards = document.querySelectorAll(".card");
-      //enable flipcard
-      cards.forEach(function (card) {
-        card.addEventListener("click", flipCard);
-      });
-      cardRender();
+  let createdNewCards = (numberOfCards - DIFFICULTY.EASY) * 2;
+  if (createdNewCards > 0) {
+    cardDivCreation(createdNewCards);
+    //reselect all cards
+    cards = document.querySelectorAll(".card");
+    //enable flipcard
+    cards.forEach(function (card) {
+      card.addEventListener("click", flipCard);
+    });
+    cardRender();
   }
+  cardRender();
 }
 
 function cardDivCreation(newCardNum) {
