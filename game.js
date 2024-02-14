@@ -18,7 +18,8 @@ const btnClickSound = new Audio(
 
 const DIFFICULTY = {
   EASY: 8,
-  HARD: 10,
+  MEDIUM: 10,
+  HARD: 12,
 };
 
 //----------------state variable--------------------------------
@@ -51,13 +52,26 @@ function shuffledNumArr(numberOfCards) {
   let cardNum;
   let pairs;
   switch (numberOfCards) {
-    case 8:
+    case DIFFICULTY.EASY:
       //generate random num from 1-8
-      cardNum = Array.from({ length: 8 }, (_, index) => index + 1);
+      cardNum = Array.from(
+        { length: DIFFICULTY.EASY },
+        (_, index) => index + 1
+      );
       break;
-    case 10:
+    case DIFFICULTY.MEDIUM:
       //generate random num from 1-10
-      cardNum = Array.from({ length: 10 }, (_, index) => index + 1);
+      cardNum = Array.from(
+        { length: DIFFICULTY.MEDIUM },
+        (_, index) => index + 1
+      );
+      break;
+    case DIFFICULTY.HARD:
+      //generate random num from 1-12
+      cardNum = Array.from(
+        { length: DIFFICULTY.HARD },
+        (_, index) => index + 1
+      );
       break;
   }
   //Duplicate each number to form 8 or10 pairs nums array
@@ -78,7 +92,6 @@ function flipCard() {
   if (this.classList.contains("flipCard")) {
     return;
   }
-
   //use "this" to get "card" element
   this.classList.toggle("flipCard");
   //check is second click img == first click img. (Num same), also store 1st and 2nd img index
@@ -93,44 +106,24 @@ function flipCard() {
     state.secondClickNum = state.shuffledCards[state.secondImgIndex];
     state.isFirstClick = true;
     //check pair match
-    checkMatch(state.numberOfCards);
+    checkMatch();
   }
 }
 
-function checkMatch(numberOfCards) {
+function checkMatch() {
+  //check match
+  //via index number linked to card
   if (state.firstClickNum === state.secondClickNum) {
     //if same, keep img open
     cards[state.firstImgIndex].removeEventListener("click", flipCard);
     cards[state.secondImgIndex].removeEventListener("click", flipCard);
-
+    //track flipped number
     state.flippedNum += 2;
-
     //display cards Left
     state.cardsLeft -= 2;
     cardsLeftEl.innerText = `Cards Left: ${state.cardsLeft}`;
-
     //check Win
-    if (
-      numberOfCards == DIFFICULTY.EASY &&
-      state.flippedNum === DIFFICULTY.EASY * 2
-    ) {
-      winMsg.innerText = "Yeah! You Win";
-      countdown.classList.remove("countdown-show");
-      //clear countdown timer
-      clearInterval(state.timer);
-      message.classList.add("msgShow");
-      reset();
-    } else if (
-      numberOfCards == DIFFICULTY.HARD &&
-      state.flippedNum === DIFFICULTY.HARD * 2
-    ) {
-      winMsg.innerText = "Yeah! You Win";
-      countdown.classList.remove("countdown-show");
-      //clear countdown timer
-      clearInterval(state.timer);
-      message.classList.add("msgShow");
-      reset();
-    }
+    checkWin(state.numberOfCards);
   } else {
     //check not Match
     // Create local variables to store image indices
@@ -172,45 +165,12 @@ function init(numberOfCards) {
 
   //timer count down
   state.timer = setInterval(countdownTimer, 1000);
-  //link to player choice
+  //link to player choice !!!!!!!!!!!!
   state.numberOfCards = numberOfCards;
 
   state.shuffledCards = shuffledNumArr(numberOfCards);
   // linked shuffled card number array to images
-  //easy mode
-  if (numberOfCards === DIFFICULTY.EASY) {
-    cardRender();
-  } else if (numberOfCards === DIFFICULTY.HARD) {
-    // add all the new cards
-    const createdNewCards = (DIFFICULTY.HARD - DIFFICULTY.EASY) * 2;
-    for (let i = 0; i < createdNewCards; i++) {
-      let newCards = document.createElement("section");
-      newCards.classList.add("card");
-      //newCard identifier
-      newCards.classList.add("newCard");
-      //add frontFace/backFace img class
-      let frontFace = document.createElement("img");
-      frontFace.classList.add("front-face");
-      let backFace = document.createElement("img");
-      backFace.classList.add("back-face");
-      //back face image link
-      backFace.setAttribute("src", "./css/images/question-mark.png");
-      //add frontFace/backFace to newCards class
-      newCards.appendChild(frontFace);
-      newCards.appendChild(backFace);
-      //addback to container
-      cardContainer.appendChild(newCards);
-    }
-    //reselect all cards
-    cards = document.querySelectorAll(".card");
-
-    //enable flipcard
-    cards.forEach(function (card) {
-      card.addEventListener("click", flipCard);
-    });
-
-    cardRender();
-  }
+  cardDivNum(numberOfCards);
 
   //cards left number
   state.cardsLeft = numberOfCards * 2;
@@ -255,4 +215,82 @@ function cardRender() {
       "./css/images/animal" + state.shuffledCards[index] + ".png";
     card.querySelector(".front-face").setAttribute("src", randomImgSrc);
   });
+}
+
+function checkWin(numberOfCards) {
+  if (
+    numberOfCards == DIFFICULTY.EASY &&
+    state.flippedNum === DIFFICULTY.EASY * 2
+  ) {
+    winMsg.innerText = "Yeah! You Win";
+    countdown.classList.remove("countdown-show");
+    clearInterval(state.timer); // Clear countdown timer
+    message.classList.add("msgShow");
+    reset();
+  } else if (
+    numberOfCards == DIFFICULTY.MEDIUM &&
+    state.flippedNum === DIFFICULTY.MEDIUM * 2
+  ) {
+    winMsg.innerText = "Yeah! You Win";
+    countdown.classList.remove("countdown-show");
+    clearInterval(state.timer); // Clear countdown timer
+    message.classList.add("msgShow");
+    reset();
+  } else if (
+    numberOfCards == DIFFICULTY.HARD &&
+    state.flippedNum === DIFFICULTY.HARD * 2
+  ) {
+    winMsg.innerText = "Yeah! You Win";
+    countdown.classList.remove("countdown-show");
+    clearInterval(state.timer); // Clear countdown timer
+    message.classList.add("msgShow");
+    reset();
+  }
+}
+
+function cardDivNum(numberOfCards) {
+  let createdNewCards;
+  switch (numberOfCards) {
+    case DIFFICULTY.EASY:
+      cardRender();
+      break;
+    case DIFFICULTY.MEDIUM:
+      // add all the new cards
+      createdNewCards = (DIFFICULTY.MEDIUM - DIFFICULTY.EASY) * 2;
+      cardDivCreation(createdNewCards);
+      //reselect all cards
+      cards = document.querySelectorAll(".card");
+      //enable flipcard
+      cards.forEach(function (card) {
+        card.addEventListener("click", flipCard);
+      });
+      cardRender();
+      break;
+    case DIFFICULTY.HARD:
+      createdNewCards = (DIFFICULTY.HARD - DIFFICULTY.EASY) * 2;
+      cardDivCreation(createdNewCards);
+      //reselect all cards
+      cards = document.querySelectorAll(".card");
+      //enable flipcard
+      cards.forEach(function (card) {
+        card.addEventListener("click", flipCard);
+      });
+      cardRender();
+  }
+}
+
+function cardDivCreation(newCardNum) {
+  for (let i = 0; i < newCardNum; i++) {
+    let newCards = document.createElement("section");
+    newCards.classList.add("card");
+    newCards.classList.add("newCard");
+    let frontFace = document.createElement("img");
+    frontFace.classList.add("front-face");
+    let backFace = document.createElement("img");
+    backFace.classList.add("back-face");
+    backFace.setAttribute("src", "./css/images/question-mark.png");
+    newCards.appendChild(frontFace);
+    newCards.appendChild(backFace);
+    cardContainer.appendChild(newCards);
+  }
 }
