@@ -49,6 +49,8 @@ header {
   background-color: rgb(201, 215, 221);
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 40px;
+  box-shadow: 20px 20px 50px grey;
 }
 
 /* click effect on card, scale down 0.97 of original size */
