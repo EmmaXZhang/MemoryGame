@@ -4,6 +4,7 @@
 
 body {
   margin: 0;
+  background-color: rgb(255, 243, 207);
 }
 
 header {
@@ -11,12 +12,13 @@ header {
   font-size: 60px;
   color: rgb(99, 122, 159);
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 2fr 1fr;
   grid-template-rows: auto;
-
-  background-color: rgb(255, 243, 207);
-  justify-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
+  background-color: rgb(255, 243, 207);
 }
 
 .front-face,
@@ -39,6 +41,16 @@ header {
   background: rgb(232, 200, 114);
 }
 
+.board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(201, 215, 221);
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* click effect on card, scale down 0.97 of original size */
 .card:active {
   transform: scale(0.97);
@@ -54,7 +66,8 @@ header {
   align-items: center;
   justify-content: center;
   font-family: "Barriecito", system-ui;
-  background-color: rgb(255, 243, 207);
+  /* background-color: red; */
+  max-width: 750px;
   margin: 0;
   color: rgb(99, 122, 159);
   font-size: 25px;
@@ -62,11 +75,11 @@ header {
 
 .container {
   display: none;
-  /* display: grid; */
-  /* center container element */
   align-content: center;
   justify-content: center;
-  background-color: rgb(255, 243, 207);
+  margin-bottom: 40px;
+  /* background-color: red; */
+  max-width: 750px;
   height: auto;
   grid-template-columns: auto auto auto auto;
   grid-template-rows: auto auto auto auto;
@@ -100,6 +113,7 @@ header {
   width: 160px;
   background-color: rgb(255, 243, 207);
   z-index: 1;
+  margin-left: 100px;
 }
 
 #countdown.countdown-show {
@@ -193,14 +207,6 @@ header {
   display: none;
 }
 
-.gamePage {
-  height: 100vh;
-  width: 100vw;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto auto;
-}
-
 /* winning message showing case, hidden firs */
 .message {
   position: fixed;
@@ -258,4 +264,26 @@ svg circle {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* when screen size is 768px and above, display 2 column, 3 rows */
+/* @media only screen and (min-width: 760px) {
+  body {
+    width: 650px;
+  }
+} */
+
+/* @media only screen and (max-width: 480px) {
+  .container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+  }
+} */
+
+.gamePage {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
 }

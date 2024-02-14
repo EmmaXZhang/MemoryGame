@@ -151,7 +151,6 @@ function reset() {
   state.secondClickNum = null;
   state.firstImgIndex = null;
   state.secondImgIndex = null;
-  // state.countdownOrigin = 60;
 }
 
 //countDown timer
