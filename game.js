@@ -230,7 +230,7 @@ function cardRender() {
 function checkWin(numberOfCards) {
   if (state.flippedNum === numberOfCards * 2) {
     winSound.play();
-    winMsg.innerText = "Yeah! You Win";
+    winMsg.innerText = "You Win!";
     countdown.classList.remove("countdown-show");
     // Clear countdown timer,otherwise still count down !!!!
     clearInterval(state.timer);

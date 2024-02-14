@@ -254,7 +254,7 @@ svg circle {
   fill: none;
   display: none;
   /* Add a shadow to create depth */
-  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.432));
+  filter: drop-shadow(2px 2px 4px rgba(79, 111, 82, 0.5));
 }
 
 .welcomeMsg {
@@ -286,6 +286,7 @@ svg circle {
 
   .container {
     display: grid;
+    gap: 0.3em;
     grid-template-columns: auto auto auto auto auto;
     grid-template-rows: auto auto auto auto;
   }
@@ -293,5 +294,6 @@ svg circle {
   .card {
     width: 120px;
     height: 120px;
+    border-radius: 10px;
   }
 }
