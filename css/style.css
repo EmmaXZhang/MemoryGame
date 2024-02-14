@@ -55,7 +55,8 @@ body {
   max-width: 750px;
   margin: 0;
   color: rgb(99, 122, 159);
-  font-size: 25px;
+  font-size: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .container {
@@ -104,6 +105,7 @@ body {
   display: inline-block;
   font-size: 24px;
   position: absolute;
+  font-family: "Workbench", sans-serif;
 }
 
 @keyframes countdown {
@@ -116,8 +118,10 @@ body {
 }
 
 #gameName {
-  grid-column: span 2;
-  justify-items: end;
+  font-family: "Workbench", sans-serif;
+  font-size: 70px;
+  color: rgb(99, 122, 159);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .gameDifficulty {
@@ -190,9 +194,6 @@ body {
 }
 
 header {
-  font-family: "Workbench", sans-serif;
-  font-size: 60px;
-  color: rgb(99, 122, 159);
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-evenly;
@@ -231,6 +232,7 @@ header {
   color: rgb(79, 111, 82);
   box-shadow: -5px -5px 9px rgba(255, 255, 255, 0.45),
     5px 5px 9px rgba(94, 104, 121, 0.3);
+  border-color: #ffffff;
 }
 
 .restart:hover {
@@ -251,6 +253,8 @@ svg circle {
   stroke: rgb(79, 111, 82);
   fill: none;
   display: none;
+  /* Add a shadow to create depth */
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.432));
 }
 
 .welcomeMsg {
