@@ -91,7 +91,6 @@ body {
   display: none;
   justify-content: center;
   align-items: center;
-  background-color: rgb(255, 243, 207);
   z-index: 1;
   margin-left: 100px;
 }
@@ -104,6 +103,7 @@ body {
   color: rgb(79, 111, 82);
   display: inline-block;
   font-size: 24px;
+  position: absolute;
 }
 
 @keyframes countdown {
@@ -149,7 +149,7 @@ body {
   cursor: pointer;
   display: inline-block;
   font-family: "Barriecito", system-ui;
-  font-size: 4vw;
+  font-size: 3vw;
   font-weight: 500;
   line-height: 2.5;
   outline: transparent;
@@ -193,11 +193,9 @@ header {
   font-family: "Workbench", sans-serif;
   font-size: 60px;
   color: rgb(99, 122, 159);
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: auto;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
   justify-content: center;
   align-items: center;
   background-color: rgb(255, 243, 207);
@@ -242,7 +240,7 @@ header {
 
 svg {
   transform: rotateY(-180deg) rotateZ(-90deg);
-  position: absolute;
+  position: relative;
   width: 160px;
   height: 160px;
 }
