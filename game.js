@@ -220,34 +220,11 @@ function cardRender() {
 }
 
 function checkWin(numberOfCards) {
-  if (
-    numberOfCards == DIFFICULTY.EASY &&
-    state.flippedNum === DIFFICULTY.EASY * 2
-  ) {
+  if (state.flippedNum === numberOfCards * 2) {
     winSound.play();
     winMsg.innerText = "Yeah! You Win";
     countdown.classList.remove("countdown-show");
     clearInterval(state.timer); // Clear countdown timer
-    message.classList.add("msgShow");
-    reset();
-  } else if (
-    numberOfCards == DIFFICULTY.MEDIUM &&
-    state.flippedNum === DIFFICULTY.MEDIUM * 2
-  ) {
-    winSound.play();
-    winMsg.innerText = "Yeah! You Win";
-    countdown.classList.remove("countdown-show");
-    clearInterval(state.timer);
-    message.classList.add("msgShow");
-    reset();
-  } else if (
-    numberOfCards == DIFFICULTY.HARD &&
-    state.flippedNum === DIFFICULTY.HARD * 2
-  ) {
-    winSound.play();
-    winMsg.innerText = "Yeah! You Win";
-    countdown.classList.remove("countdown-show");
-    clearInterval(state.timer);
     message.classList.add("msgShow");
     reset();
   }
