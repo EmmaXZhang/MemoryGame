@@ -35,10 +35,12 @@ header {
   background: rgb(99, 122, 159);
   /* show front face  */
   transform: rotateY(180deg);
+  border-radius: 10px;
 }
 
 .back-face {
   background: rgb(232, 200, 114);
+  border-radius: 10px;
 }
 
 .board {
@@ -51,6 +53,7 @@ header {
   margin-right: auto;
   margin-bottom: 40px;
   box-shadow: 20px 20px 50px grey;
+  border-radius: 10px;
 }
 
 /* click effect on card, scale down 0.97 of original size */
