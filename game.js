@@ -134,6 +134,7 @@ function checkMatch() {
     // Create local variables to store image indices
     const firstIndex = state.firstImgIndex;
     const secondIndex = state.secondImgIndex;
+
     //if note, fip back 2 imgs after few second
     setTimeout(() => {
       cards[firstIndex].classList.toggle("flipCard");
