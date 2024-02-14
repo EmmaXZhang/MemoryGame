@@ -100,7 +100,7 @@ body {
 }
 
 #countdown-number {
-  color: rgb(236, 86, 10);
+  color: rgb(79, 111, 82);
   display: inline-block;
   font-size: 24px;
 }
@@ -247,7 +247,7 @@ svg {
 svg circle {
   stroke-dasharray: 251.2px;
   stroke-width: 4px;
-  stroke: rgb(236, 86, 10);
+  stroke: rgb(79, 111, 82);
   fill: none;
   display: none;
 }
