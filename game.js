@@ -201,11 +201,22 @@ function restart() {
   clearInterval(state.timer);
   //remove old newCards - newCard class name
   document.querySelectorAll(".newCard").forEach((card) => card.remove());
+
+  // remove event listeners from existing cards, AVOID old card flip up auto without click!!!
+  cards.forEach((card) => {
+    card.removeEventListener("click", flipCard);
+  });
   // Flip all cards back
   cards.forEach((card) => {
     card.classList.remove("flipCard");
   });
-  //enable flipCard
+
+  //reset flipped num
+  state.flippedNum = 0;
+  //reset isFirstClick
+  state.isFirstClick = true;
+
+  //enable flipCard again
   cards.forEach(function (card) {
     card.addEventListener("click", flipCard);
   });
