@@ -209,7 +209,7 @@ header {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgb(171, 196, 170, 0.8);
+  background-color: rgb(171, 196, 170, 0.9);
   display: none;
   justify-content: center;
   align-items: center;
@@ -255,6 +255,10 @@ svg circle {
   display: none;
   /* Add a shadow to create depth */
   filter: drop-shadow(2px 2px 4px rgba(79, 111, 82, 0.5));
+}
+
+.timeSpend {
+  font-size: 70px;
 }
 
 .welcomeMsg {

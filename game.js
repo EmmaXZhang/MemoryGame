@@ -231,7 +231,12 @@ function checkWin(numberOfCards) {
   if (state.flippedNum === numberOfCards * 2) {
     winSound.play();
     winMsg.innerText = "You Win!";
+
     countdown.classList.remove("countdown-show");
+    // time spend
+    document.querySelector(".timeSpend").innerText = `Time spend: ${
+      60 - state.countdownOrigin
+    } s`;
     // Clear countdown timer,otherwise still count down !!!!
     clearInterval(state.timer);
     message.classList.add("msgShow");
