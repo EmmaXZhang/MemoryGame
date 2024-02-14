@@ -15,7 +15,12 @@ const flipSound = new Audio(
 const btnClickSound = new Audio(
   "https://cdn.freesound.org/previews/504/504166_9961300-lq.mp3"
 );
-
+const winSound = new Audio(
+  "https://cdn.freesound.org/previews/258/258142_4631294-lq.mp3"
+);
+const loseSound = new Audio(
+  "https://cdn.freesound.org/previews/76/76376_877451-lq.mp3"
+);
 const DIFFICULTY = {
   EASY: 8,
   MEDIUM: 10,
@@ -152,6 +157,7 @@ function countdownTimer() {
     state.countdownOrigin--;
     countdownNumber.textContent = state.countdownOrigin;
   } else if (state.countdownOrigin == 0) {
+    loseSound.play();
     winMsg.innerText = "You lose";
     countdown.classList.remove("countdown-show");
     message.classList.add("msgShow");
@@ -161,11 +167,11 @@ function countdownTimer() {
 }
 
 function init(numberOfCards) {
+  //show count down timer
   countdown.classList.add("countdown-show");
-
   //timer count down
   state.timer = setInterval(countdownTimer, 1000);
-  //link to player choice !!!!!!!!!!!!
+  //link card nums to player choice !!!!!!!!!!!!
   state.numberOfCards = numberOfCards;
 
   state.shuffledCards = shuffledNumArr(numberOfCards);
@@ -216,6 +222,7 @@ function checkWin(numberOfCards) {
     numberOfCards == DIFFICULTY.EASY &&
     state.flippedNum === DIFFICULTY.EASY * 2
   ) {
+    winSound.play();
     winMsg.innerText = "Yeah! You Win";
     countdown.classList.remove("countdown-show");
     clearInterval(state.timer); // Clear countdown timer
@@ -225,6 +232,7 @@ function checkWin(numberOfCards) {
     numberOfCards == DIFFICULTY.MEDIUM &&
     state.flippedNum === DIFFICULTY.MEDIUM * 2
   ) {
+    winSound.play();
     winMsg.innerText = "Yeah! You Win";
     countdown.classList.remove("countdown-show");
     clearInterval(state.timer);
@@ -234,6 +242,7 @@ function checkWin(numberOfCards) {
     numberOfCards == DIFFICULTY.HARD &&
     state.flippedNum === DIFFICULTY.HARD * 2
   ) {
+    winSound.play();
     winMsg.innerText = "Yeah! You Win";
     countdown.classList.remove("countdown-show");
     clearInterval(state.timer);
