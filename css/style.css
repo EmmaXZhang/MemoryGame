@@ -131,6 +131,9 @@ body {
   background-color: rgb(255, 243, 207);
   justify-content: center;
   align-items: center;
+  /* Allow scroll vertically */
+  overflow-y: auto;
+  max-height: 100vh;
 }
 
 .gameDifficulty > button {
