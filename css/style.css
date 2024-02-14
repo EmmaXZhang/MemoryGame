@@ -15,18 +15,17 @@ body {
   /* sets whether the back face of an element is visible when turned towards the user. 
   3d反过来的时候是否可以从正面看到反过去那一面的背部-镜像 */
   backface-visibility: hidden;
+  border-radius: 10px;
 }
 
 .front-face {
   background: rgb(99, 122, 159);
   /* show front face  */
   transform: rotateY(180deg);
-  border-radius: 10px;
 }
 
 .back-face {
   background: rgb(232, 200, 114);
-  border-radius: 10px;
 }
 
 .board {
@@ -35,7 +34,6 @@ body {
   margin-right: auto;
   margin-bottom: 40px;
   box-shadow: 20px 20px 50px grey;
-  border-radius: 10px;
 }
 
 /* click effect on card, scale down 0.97 of original size */
@@ -276,6 +274,7 @@ svg circle {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 700px;
   }
 
   .container {
