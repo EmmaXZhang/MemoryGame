@@ -201,8 +201,7 @@ function restart() {
   clearInterval(state.timer);
   //remove old newCards - newCard class name
   document.querySelectorAll(".newCard").forEach((card) => card.remove());
-
-  // remove event listeners from existing cards, AVOID old card flip up auto without click!!!
+  // remove event listeners from existing cards, AVOID old card flip up auto without click!!!!
   cards.forEach((card) => {
     card.removeEventListener("click", flipCard);
   });
@@ -210,12 +209,10 @@ function restart() {
   cards.forEach((card) => {
     card.classList.remove("flipCard");
   });
-
-  //reset flipped num
+  //reset flipped num !!!!!
   state.flippedNum = 0;
-  //reset isFirstClick
+  //reset isFirstClick !!!!
   state.isFirstClick = true;
-
   //enable flipCard again
   cards.forEach(function (card) {
     card.addEventListener("click", flipCard);
@@ -235,7 +232,8 @@ function checkWin(numberOfCards) {
     winSound.play();
     winMsg.innerText = "Yeah! You Win";
     countdown.classList.remove("countdown-show");
-    clearInterval(state.timer); // Clear countdown timer
+    // Clear countdown timer,otherwise still count down !!!!
+    clearInterval(state.timer);
     message.classList.add("msgShow");
     reset();
   }
