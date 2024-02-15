@@ -236,7 +236,7 @@ header {
 }
 
 svg {
-  /* flipping the element vertically->full circle, rotating it 90d clockwise empty-countdown effect*/
+  /* flipping the element vertically->full circle, rotating it 90d clockwise empty-countdown effect after 15s*/
   transform: rotateY(-180deg) rotateZ(-90deg);
   position: relative;
   width: 160px;
