@@ -39,3 +39,8 @@ Welcome to the Memory Game, a classic card-matching game with a modern twist! Ch
 
 - Sound effects obtained from [freesound.org](https://freesound.org/)
 - Images sourced from [Unsplash](https://unsplash.com/) and [Pixabay](https://pixabay.com/)
+
+## Next Steps
+
+- [ ] Add player lives (player only have 3 chances to play same level)
+- [ ] Add number of moves reminder
