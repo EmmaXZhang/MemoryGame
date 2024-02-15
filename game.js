@@ -53,6 +53,25 @@ restartBtn.addEventListener("click", restart);
 
 //-------------------------functions----------------------------------
 
+function init(numberOfCards) {
+  //show count down timer
+  countdown.classList.add("countdown-show");
+  //settimer count down
+  countdownTimer(numberOfCards);
+  //link card nums to player choice !!!!!!!!!!!!
+  state.numberOfCards = numberOfCards;
+
+  state.shuffledCards = shuffledNumArr(numberOfCards);
+  // linked shuffled card number array to images
+  cardDivNum(numberOfCards);
+  //cards left number
+  state.cardsLeft = numberOfCards * 2;
+  cardsLeftEl.innerText = `Cards Left: ${state.cardsLeft}`;
+  // add the circle animation to game page -css
+  circle.style.animation = "countdown 60s linear forwards";
+  circle.style.display = "block";
+}
+
 //shuffled cards
 function shuffledNumArr(numberOfCards) {
   let cardNum;
@@ -145,6 +164,23 @@ function checkMatch() {
   }
 }
 
+function checkWin(numberOfCards) {
+  if (state.flippedNum === numberOfCards * 2) {
+    winSound.play();
+    winMsg.innerText = "You Win!";
+
+    countdown.classList.remove("countdown-show");
+    // time spend
+    document.querySelector(".timeSpend").innerText = `Time spend: ${
+      state.countdownOrigin - state.countdownCurrent
+    } s`;
+    // Clear countdown timer,otherwise still count down !!!!
+    clearInterval(state.timer);
+    message.classList.add("msgShow");
+    reset();
+  }
+}
+
 function reset() {
   //reset state for click num for next pair
   state.firstClickNum = null;
@@ -180,23 +216,43 @@ function countdownTimer(numberOfCards) {
   }, 1000);
 }
 
-function init(numberOfCards) {
-  //show count down timer
-  countdown.classList.add("countdown-show");
-  //settimer count down
-  countdownTimer(numberOfCards);
-  //link card nums to player choice !!!!!!!!!!!!
-  state.numberOfCards = numberOfCards;
+function cardRender() {
+  cards.forEach((card, index) => {
+    let randomImgSrc =
+      "./css/images/animal" + state.shuffledCards[index] + ".png";
+    card.querySelector(".front-face").setAttribute("src", randomImgSrc);
+  });
+}
 
-  state.shuffledCards = shuffledNumArr(numberOfCards);
-  // linked shuffled card number array to images
-  cardDivNum(numberOfCards);
-  //cards left number
-  state.cardsLeft = numberOfCards * 2;
-  cardsLeftEl.innerText = `Cards Left: ${state.cardsLeft}`;
-  // add the circle animation to game page -css
-  circle.style.animation = "countdown 60s linear forwards";
-  circle.style.display = "block";
+function cardDivNum(numberOfCards) {
+  let createdNewCards = (numberOfCards - DIFFICULTY.EASY) * 2;
+  if (createdNewCards > 0) {
+    cardDivCreation(createdNewCards);
+    //reselect all cards
+    cards = document.querySelectorAll(".card");
+    //enable flipcard
+    cards.forEach(function (card) {
+      card.addEventListener("click", flipCard);
+    });
+    cardRender();
+  }
+  cardRender();
+}
+
+function cardDivCreation(newCardNum) {
+  for (let i = 0; i < newCardNum; i++) {
+    let newCards = document.createElement("section");
+    newCards.classList.add("card");
+    newCards.classList.add("newCard");
+    let frontFace = document.createElement("img");
+    frontFace.classList.add("front-face");
+    let backFace = document.createElement("img");
+    backFace.classList.add("back-face");
+    backFace.setAttribute("src", "./css/images/question-mark.png");
+    newCards.appendChild(frontFace);
+    newCards.appendChild(backFace);
+    cardContainer.appendChild(newCards);
+  }
 }
 
 function restart() {
@@ -231,60 +287,4 @@ function restart() {
   cards.forEach(function (card) {
     card.addEventListener("click", flipCard);
   });
-}
-
-function cardRender() {
-  cards.forEach((card, index) => {
-    let randomImgSrc =
-      "./css/images/animal" + state.shuffledCards[index] + ".png";
-    card.querySelector(".front-face").setAttribute("src", randomImgSrc);
-  });
-}
-
-function checkWin(numberOfCards) {
-  if (state.flippedNum === numberOfCards * 2) {
-    winSound.play();
-    winMsg.innerText = "You Win!";
-
-    countdown.classList.remove("countdown-show");
-    // time spend
-    document.querySelector(".timeSpend").innerText = `Time spend: ${
-      state.countdownOrigin - state.countdownCurrent
-    } s`;
-    // Clear countdown timer,otherwise still count down !!!!
-    clearInterval(state.timer);
-    message.classList.add("msgShow");
-    reset();
-  }
-}
-
-function cardDivNum(numberOfCards) {
-  let createdNewCards = (numberOfCards - DIFFICULTY.EASY) * 2;
-  if (createdNewCards > 0) {
-    cardDivCreation(createdNewCards);
-    //reselect all cards
-    cards = document.querySelectorAll(".card");
-    //enable flipcard
-    cards.forEach(function (card) {
-      card.addEventListener("click", flipCard);
-    });
-    cardRender();
-  }
-  cardRender();
-}
-
-function cardDivCreation(newCardNum) {
-  for (let i = 0; i < newCardNum; i++) {
-    let newCards = document.createElement("section");
-    newCards.classList.add("card");
-    newCards.classList.add("newCard");
-    let frontFace = document.createElement("img");
-    frontFace.classList.add("front-face");
-    let backFace = document.createElement("img");
-    backFace.classList.add("back-face");
-    backFace.setAttribute("src", "./css/images/question-mark.png");
-    newCards.appendChild(frontFace);
-    newCards.appendChild(backFace);
-    cardContainer.appendChild(newCards);
-  }
 }
