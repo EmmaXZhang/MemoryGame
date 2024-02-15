@@ -2,9 +2,24 @@
 
 Welcome to the Memory Game, a classic card-matching game with a modern twist! Challenge your memory and concentration skills as you uncover matching pairs of delightful animal images.
 
-## How to Play
+## Screenshots
 
-1. Launch the game by opening the `index.html` file in your web browser.
+1. ![homepage](./gameScreenshots/homepage.png)
+2. ![easyLevel](./gameScreenshots/easy_level.png)
+3. ![mediumLevel](./gameScreenshots/medium_level.png)
+4. ![hardLevel](./gameScreenshots/hard_level.png)
+5. ![winPage](./gameScreenshots/win_page.png)
+6. ![losePage](./gameScreenshots/lose_page.png)
+
+## Technologies Used
+
+- HTML
+- CSS
+- JavaScript
+
+## Getting Started
+
+1. Here is the game link: https://emmaxzhang.github.io/MemoryGame/
 2. Choose your preferred difficulty level: Easy, Medium, or Hard. The card number increase and countdown timer reduce according to different game level.
 3. Click on cards to flip them over and reveal the hidden images.
 4. Try to find all matching pairs of images by remembering their locations.
@@ -20,21 +35,7 @@ Welcome to the Memory Game, a classic card-matching game with a modern twist! Ch
 - Engaging sound effects and smooth card flipping animation.
 - Customizable game experience with the ability to restart and choose different difficulty levels.
 
-## Technologies Used
-
-- HTML
-- CSS
-- JavaScript
-
-## How to Contribute
-
-If you'd like to contribute to the project, feel free to fork the repository, make your changes, and submit a pull request. Any suggestions, bug fixes, or improvements are welcome!
-
 ## Credits
 
 - Sound effects obtained from [freesound.org](https://freesound.org/)
 - Images sourced from [Unsplash](https://unsplash.com/) and [Pixabay](https://pixabay.com/)
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
