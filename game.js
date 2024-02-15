@@ -51,7 +51,7 @@ cards.forEach(function (card) {
 });
 restartBtn.addEventListener("click", restart);
 
-//-------------------------functions----------------------------------
+//-------------------------functions------------------------------
 
 function init(numberOfCards) {
   //show count down timer
@@ -102,9 +102,10 @@ function shuffledNumArr(numberOfCards) {
 
   //Duplicate each number to form 8,10,12 pairs nums array
   pairs = cardNum.flatMap((number) => [number, number]);
-  //Shuffle the pairs number array
+  //Shuffle the pairs number array- Fisher-Yates shuffle algorithm.15-1
   for (let i = pairs.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = Math.floor(Math.random() * (i + 1)); //0-15 int index
+    //swaps the elements at indices i and j ,destructure assignment
     [pairs[i], pairs[j]] = [pairs[j], pairs[i]];
   }
   return pairs;
@@ -161,6 +162,7 @@ function checkMatch() {
       cards[firstIndex].classList.toggle("flipCard");
       cards[secondIndex].classList.toggle("flipCard");
     }, 1000);
+
     reset();
   }
 }
@@ -175,7 +177,7 @@ function checkWin(numberOfCards) {
     document.querySelector(".timeSpend").innerText = `Time spend: ${
       state.countdownOrigin - state.countdownCurrent
     } s`;
-    // Clear countdown timer,otherwise still count down !!!!
+    // Clear countdown timer!
     clearInterval(state.timer);
     message.classList.add("msgShow");
     reset();
@@ -201,7 +203,6 @@ function countdownTimer(numberOfCards) {
   }
   //countdown timer to a named function,assign to state.timer, so it can be clear inside function
   state.timer = setInterval(function () {
-    // Corrected: pass a function to setInterval
     if (state.countdownCurrent > 0) {
       state.countdownCurrent--;
       countdownNumber.textContent = state.countdownCurrent;
@@ -210,19 +211,12 @@ function countdownTimer(numberOfCards) {
       winMsg.innerText = "Game Over";
       countdown.classList.remove("countdown-show");
       message.classList.add("msgShow");
-      clearInterval(state.timer); // Stop the countdown timer
+      // Stop the countdown timer
+      clearInterval(state.timer);
     } else {
       return;
     }
   }, 1000);
-}
-
-function cardRender() {
-  cards.forEach((card, index) => {
-    let randomImgSrc =
-      "./css/images/animal" + state.shuffledCards[index] + ".png";
-    card.querySelector(".front-face").setAttribute("src", randomImgSrc);
-  });
 }
 
 function cardDivNum(numberOfCards) {
@@ -238,6 +232,14 @@ function cardDivNum(numberOfCards) {
     cardRender();
   }
   cardRender();
+}
+
+function cardRender() {
+  cards.forEach((card, index) => {
+    let randomImgSrc =
+      "./css/images/animal" + state.shuffledCards[index] + ".png";
+    card.querySelector(".front-face").setAttribute("src", randomImgSrc);
+  });
 }
 
 function cardDivCreation(newCardNum) {
@@ -263,7 +265,7 @@ function restart() {
   document.querySelector(".gameDifficulty").classList.remove("hide");
   //remove win/lose message page
   message.classList.remove("msgShow");
-  // //reset countdown timer to 60----------------------
+  //reset countdown timer to original number
   state.countdownCurrent = state.countdownOrigin;
   countdownNumber.textContent = state.countdownCurrent;
   //remove time spend text
