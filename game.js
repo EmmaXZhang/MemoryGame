@@ -37,7 +37,8 @@ const state = {
   imgClickIndex: null,
   isFirstClick: true,
   flippedNum: 0,
-  countdownOrigin: 60,
+  countdownCurrent: 0,
+  countdownOrigin: 0,
   timer: null,
   numberOfCards: 0,
   cardsLeft: 0,
@@ -153,26 +154,37 @@ function reset() {
 }
 
 //countDown timer
-function countdownTimer() {
-  if (state.countdownOrigin > 0) {
-    state.countdownOrigin--;
-    countdownNumber.textContent = state.countdownOrigin;
-  } else if (state.countdownOrigin == 0) {
-    loseSound.play();
-    winMsg.innerText = "You lose";
-    countdown.classList.remove("countdown-show");
-    message.classList.add("msgShow");
-    clearInterval(state.timer); // Stop the countdown timer
+function countdownTimer(numberOfCards) {
+  if (numberOfCards === DIFFICULTY.EASY) {
+    state.countdownCurrent = 60;
+    state.countdownOrigin = 60;
   } else {
-    return;
+    state.countdownCurrent = 50;
+    state.countdownOrigin = 50;
   }
+  //countdown timer to a named function,assign to state.timer, so it can be clear inside function
+  state.timer = setInterval(function () {
+    // Corrected: pass a function to setInterval
+    if (state.countdownCurrent > 0) {
+      state.countdownCurrent--;
+      countdownNumber.textContent = state.countdownCurrent;
+    } else if (state.countdownCurrent == 0) {
+      loseSound.play();
+      winMsg.innerText = "Game Over";
+      countdown.classList.remove("countdown-show");
+      message.classList.add("msgShow");
+      clearInterval(state.timer); // Stop the countdown timer
+    } else {
+      return;
+    }
+  }, 1000);
 }
 
 function init(numberOfCards) {
   //show count down timer
   countdown.classList.add("countdown-show");
-  //timer count down
-  state.timer = setInterval(countdownTimer, 1000);
+  //settimer count down
+  countdownTimer(numberOfCards);
   //link card nums to player choice !!!!!!!!!!!!
   state.numberOfCards = numberOfCards;
 
@@ -194,9 +206,11 @@ function restart() {
   document.querySelector(".gameDifficulty").classList.remove("hide");
   //remove win/lose message page
   message.classList.remove("msgShow");
-  //reset countdown timer to 60
-  state.countdownOrigin = 60;
-  countdownNumber.textContent = state.countdownOrigin;
+  // //reset countdown timer to 60----------------------
+  state.countdownCurrent = state.countdownOrigin;
+  countdownNumber.textContent = state.countdownCurrent;
+  //remove time spend text
+  document.querySelector(".timeSpend").innerText = "";
   // Clear the existing timer interval
   clearInterval(state.timer);
   //remove old newCards - newCard class name
@@ -235,7 +249,7 @@ function checkWin(numberOfCards) {
     countdown.classList.remove("countdown-show");
     // time spend
     document.querySelector(".timeSpend").innerText = `Time spend: ${
-      60 - state.countdownOrigin
+      state.countdownOrigin - state.countdownCurrent
     } s`;
     // Clear countdown timer,otherwise still count down !!!!
     clearInterval(state.timer);
