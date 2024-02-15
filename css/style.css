@@ -12,8 +12,7 @@ body {
   height: 100%;
   width: 100%;
   position: absolute;
-  /* sets whether the back face of an element is visible when turned towards the user. 
-  3d反过来的时候是否可以从正面看到反过去那一面的背部-镜像 */
+  /* sets whether the back face of an element is visible when turned towards the user. */
   backface-visibility: hidden;
   border-radius: 10px;
 }
@@ -31,20 +30,9 @@ body {
 .board {
   background-color: rgb(201, 215, 221);
   margin-left: 20px;
-  /* margin-right: auto; */
   margin-bottom: 40px;
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.7);
   max-width: 350px;
-}
-
-/* click effect on card, scale down 0.97 of original size */
-.card:active {
-  transform: scale(0.97);
-}
-
-/* flip card effect,rotate y axis after click */
-.card.flipCard {
-  transform: rotateY(180deg);
 }
 
 .cardsLeft {
@@ -87,6 +75,11 @@ body {
   /* horizontal,vertical,blur,spread */
   box-shadow: 0px 5px 10px 3px rgba(0, 0, 0, 0.7);
   border-radius: 10px;
+}
+
+/* flip card effect,rotate y axis after click */
+.card.flipCard {
+  transform: rotateY(180deg);
 }
 
 /* countdown timer */
@@ -138,9 +131,6 @@ body {
   background-color: rgb(255, 243, 207);
   justify-content: center;
   align-items: center;
-  /* Allow scroll vertically */
-  /* overflow-y: auto;
-  max-height: 100vh; */
 }
 
 .gameDifficulty > button {
@@ -197,7 +187,6 @@ body {
 
 header {
   display: flex;
-  /* flex-direction: column; */
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
@@ -207,7 +196,7 @@ header {
   background-color: rgb(255, 243, 207);
 }
 
-/* winning message showing case, hidden firs */
+/* winning message showing case, hidden first */
 .message {
   position: fixed;
   top: 0;

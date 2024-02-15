@@ -78,28 +78,29 @@ function shuffledNumArr(numberOfCards) {
   let pairs;
   switch (numberOfCards) {
     case DIFFICULTY.EASY:
-      //generate random num from 1-8
+      //generate num from 1-8
       cardNum = Array.from(
         { length: DIFFICULTY.EASY },
-        (_, index) => index + 1
+        (_, index) => index + 1 //mapping function,by adding 1 to each index
       );
       break;
     case DIFFICULTY.MEDIUM:
-      //generate random num from 1-10
+      //generate num from 1-10
       cardNum = Array.from(
         { length: DIFFICULTY.MEDIUM },
         (_, index) => index + 1
       );
       break;
     case DIFFICULTY.HARD:
-      //generate random num from 1-12
+      //generate num from 1-12
       cardNum = Array.from(
         { length: DIFFICULTY.HARD },
         (_, index) => index + 1
       );
       break;
   }
-  //Duplicate each number to form 8 or10 pairs nums array
+
+  //Duplicate each number to form 8,10,12 pairs nums array
   pairs = cardNum.flatMap((number) => [number, number]);
   //Shuffle the pairs number array
   for (let i = pairs.length - 1; i > 0; i--) {
