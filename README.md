@@ -2,14 +2,18 @@
 
 Welcome to the Memory Game, a classic card-matching game with a modern twist! Challenge your memory and concentration skills as you uncover matching pairs of delightful animal images.
 
+## To Play Game
+
+Here is the game link: https://emmaxzhang.github.io/MemoryGame/
+
 ## Screenshots
 
-1. ![homepage](./gameScreenshots/homepage.png)
-2. ![easyLevel](./gameScreenshots/easy_level.png)
-3. ![mediumLevel](./gameScreenshots/medium_level.png)
-4. ![hardLevel](./gameScreenshots/hard_level.png)
-5. ![winPage](./gameScreenshots/win_page.png)
-6. ![losePage](./gameScreenshots/lose_page.png)
+![homepage](./gameScreenshots/homepage.png)
+![easyLevel](./gameScreenshots/easy_level.png)
+![mediumLevel](./gameScreenshots/medium_level.png)
+![hardLevel](./gameScreenshots/hard_level.png)
+![winPage](./gameScreenshots/win_page.png)
+![losePage](./gameScreenshots/lose_page.png)
 
 ## Technologies Used
 
@@ -19,13 +23,12 @@ Welcome to the Memory Game, a classic card-matching game with a modern twist! Ch
 
 ## Getting Started
 
-1. Here is the game link: https://emmaxzhang.github.io/MemoryGame/
-2. Choose your preferred difficulty level: Easy, Medium, or Hard. The card number increase and countdown timer reduce according to different game level.
-3. Click on cards to flip them over and reveal the hidden images.
-4. Try to find all matching pairs of images by remembering their locations.
-5. Cards-left section will remind you how many cards are left on board.
-6. Keep track of the countdown timer and aim to find all pairs before time runs out.
-7. Win the game by successfully matching all pairs or lose if the countdown timer reaches zero.
+1. Choose your preferred difficulty level: Easy, Medium, or Hard. The card number increase and countdown timer reduce according to different game level.
+2. Click on cards to flip them over and reveal the hidden images.
+3. Try to find all matching pairs of images by remembering their locations.
+4. Cards-left section will remind you how many cards are left on board.
+5. Keep track of the countdown timer and aim to find all pairs before time runs out.s
+6. Win the game by successfully matching all pairs or lose if the countdown timer reaches zero.
 
 ## Features
 
